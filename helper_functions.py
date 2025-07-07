@@ -28,12 +28,18 @@ def num_tokens_from_string(string: str, encoding_name: str) -> int:
 
     Args:
         string (str): The input string to tokenize.
-        encoding_name (str): The name of the encoding to use (e.g., 'cl100k_base').
+        encoding_name (str): The name of the encoding to use (e.g., 'cl100k_base') or model name.
 
     Returns:
         int: The number of tokens in the string according to the specified encoding.
     """
-    encoding = tiktoken.encoding_for_model(encoding_name)
+    try:
+        # First try to use it as a model name
+        encoding = tiktoken.encoding_for_model(encoding_name)
+    except KeyError:
+        # If that fails, try to use it as an encoding name directly
+        encoding = tiktoken.get_encoding(encoding_name)
+    
     num_tokens = len(encoding.encode(string))
     return num_tokens
 

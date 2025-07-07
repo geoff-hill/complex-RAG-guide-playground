@@ -171,65 +171,67 @@ summarization_prompt = PromptTemplate(
 def create_chapter_summary(chapter):
     """
     Creates a summary of a chapter using a large language model (LLM).
-
-    Args:
-        chapter: A Document object representing the chapter to summarize.
-
-    Returns:
-        A Document object containing the summary of the chapter.
+    If the chapter is too large for the Groq API, it is split into smaller chunks and summarized in parts.
     """
-
-    # Extract the text content from the chapter
     chapter_txt = chapter.page_content
+    model_name = "llama3-70b-8192"
+    llm = ChatGroq(temperature=0, model_name=model_name, groq_api_key=groq_api_key)
+    groq_max_tokens = 8192  # Model context window
+    groq_api_limit = 6000   # Your Groq tier's per-request limit
 
-    # Specify the LLM model and configuration
-    model_name = "gpt-3.5-turbo-0125"
-    llm = ChatOpenAI(temperature=0, model_name=model_name)
-    gpt_35_turbo_max_tokens = 16000  # Maximum token limit for the model
-    verbose = False  # Set to True for more detailed output
+    # Count tokens in the chapter
+    num_tokens = num_tokens_from_string(chapter_txt, "cl100k_base")
+    verbose = False
 
-    # Calculate the number of tokens in the chapter text
-    num_tokens = num_tokens_from_string(chapter_txt, model_name)
-
-    # Choose the summarization chain type based on token count
-    if num_tokens < gpt_35_turbo_max_tokens:
-        # For shorter chapters, use the "stuff" chain type
+    if num_tokens < groq_api_limit:
+        # Summarize the whole chapter in one go
         chain = load_summarize_chain(
             llm,
             chain_type="stuff",
             prompt=summarization_prompt,
             verbose=verbose
         )
+        doc_chapter = Document(page_content=chapter_txt)
+        summary_result = chain.invoke([doc_chapter])
+        summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
+        doc_summary = Document(page_content=summary_text, metadata=chapter.metadata)
+        return doc_summary
     else:
-        # For longer chapters, use the "map_reduce" chain type
+        # Split the chapter into smaller chunks
+        chunk_size = 3000  # tokens per chunk (well under the 6000 limit)
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=200,
+            length_function=lambda x: num_tokens_from_string(x, "cl100k_base")
+        )
+        chunks = text_splitter.split_text(chapter_txt)
+
+        # Summarize each chunk
+        chunk_summaries = []
         chain = load_summarize_chain(
             llm,
-            chain_type="map_reduce",
-            map_prompt=summarization_prompt,
-            combine_prompt=summarization_prompt,
+            chain_type="stuff",
+            prompt=summarization_prompt,
             verbose=verbose
         )
+        for chunk in chunks:
+            doc_chunk = Document(page_content=chunk)
+            summary_result = chain.invoke([doc_chunk])
+            summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
+            chunk_summaries.append(summary_text)
 
-    # Start timer to measure summarization time
-    start_time = monotonic()
+        # Combine all chunk summaries into a final summary
+        combined_summary_text = "\n".join(chunk_summaries)
+        # Optionally, summarize the combined summary if it's still long
+        combined_tokens = num_tokens_from_string(combined_summary_text, "cl100k_base")
+        if combined_tokens > groq_api_limit:
+            # Summarize the combined summary
+            doc_combined = Document(page_content=combined_summary_text)
+            summary_result = chain.invoke([doc_combined])
+            combined_summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
 
-    # Create a Document object for the chapter
-    doc_chapter = Document(page_content=chapter_txt)
-
-    # Generate the summary using the selected chain
-    summary_result = chain.invoke([doc_chapter])
-
-    # Print chain type and execution time for reference
-    print(f"Chain type: {chain.__class__.__name__}")
-    print(f"Run time: {monotonic() - start_time}")
-
-    # Clean up the summary text (remove double newlines, etc.)
-    summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
-
-    # Create a Document object for the summary, preserving chapter metadata
-    doc_summary = Document(page_content=summary_text, metadata=chapter.metadata)
-
-    return doc_summary
+        doc_summary = Document(page_content=combined_summary_text, metadata=chapter.metadata)
+        return doc_summary
 
 
 # ### Generating Summaries for Each Chapter
