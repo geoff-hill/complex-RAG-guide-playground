@@ -1423,30 +1423,32 @@ def grade_generation_v_documents_and_question(state):
 # In[ ]:
 
 
-# --- Step-by-step Pipeline for Answering a Question with RAG and LLMs ---
+def test_pipeline():
+    """Test the pipeline with a sample question"""
+    # --- Step-by-step Pipeline for Answering a Question with RAG and LLMs ---
 
-# 1. Define the initial state with the question to answer
-init_state = {"question": "who is fluffy?"}
+    # 1. Define the initial state with the question to answer
+    init_state = {"question": "who is fluffy?"}
 
-# 2. Retrieve relevant context for the question from the vector stores (chunks, summaries, quotes)
-context_state = retrieve_context_per_question(init_state)
+    # 2. Retrieve relevant context for the question from the vector stores (chunks, summaries, quotes)
+    context_state = retrieve_context_per_question(init_state)
 
-# 3. Use an LLM to filter and keep only the content relevant to the question from the retrieved context
-relevant_content_state = keep_only_relevant_content(context_state)
+    # 3. Use an LLM to filter and keep only the content relevant to the question from the retrieved context
+    relevant_content_state = keep_only_relevant_content(context_state)
 
-# 4. Check if the filtered content is relevant to the question using an LLM-based relevance check
-is_relevant_content_state = is_relevant_content(relevant_content_state)
+    # 4. Check if the filtered content is relevant to the question using an LLM-based relevance check
+    is_relevant_content_state = is_relevant_content(relevant_content_state)
 
-# 5. Use an LLM to answer the question based on the relevant context
-answer_state = answer_question_from_context(relevant_content_state)
+    # 5. Use an LLM to answer the question based on the relevant context
+    answer_state = answer_question_from_context(relevant_content_state)
 
-# 6. Grade the generated answer:
-#    - Check if the answer is grounded in the provided context (fact-checking)
-#    - Check if the question can be fully answered from the context
-final_answer = grade_generation_v_documents_and_question(answer_state)
+    # 6. Grade the generated answer:
+    #    - Check if the answer is grounded in the provided context (fact-checking)
+    #    - Check if the question can be fully answered from the context
+    final_answer = grade_generation_v_documents_and_question(answer_state)
 
-# 7. Print the final answer
-print(answer_state["answer"])
+    # 7. Print the final answer
+    print(answer_state["answer"])
 
 
 # ### Build the Graph
@@ -1536,13 +1538,14 @@ qualitative_retrieval_answer_workflow.add_conditional_edges(
 qualitative_retrieval_answer_retrival_app = qualitative_retrieval_answer_workflow.compile()
 
 # Display the workflow graph as a Mermaid diagram
-display(
-    Image(
-        qualitative_retrieval_answer_retrival_app.get_graph().draw_mermaid_png(
-            draw_method=MermaidDrawMethod.API,
+def display_workflow_graph():
+    display(
+        Image(
+            qualitative_retrieval_answer_retrival_app.get_graph().draw_mermaid_png(
+                draw_method=MermaidDrawMethod.API,
+            )
         )
     )
-)
 
 
 # For more complex tasks, where the question cannot be answered solely by retrieving information based on semantic similarity, we need a more sophisticated pipeline. To achieve this, we may first break down the graph into several sub-graphs that will serve as functions for the sophisticated pipeline.
@@ -1785,13 +1788,14 @@ qualitative_chunks_retrieval_workflow.add_conditional_edges(
 qualitative_chunks_retrieval_workflow_app = qualitative_chunks_retrieval_workflow.compile()
 
 # 6. Display the workflow graph as a Mermaid diagram
-display(
-    Image(
-        qualitative_chunks_retrieval_workflow_app.get_graph().draw_mermaid_png(
-            draw_method=MermaidDrawMethod.API,
+def display_chunks_workflow():
+    display(
+        Image(
+            qualitative_chunks_retrieval_workflow_app.get_graph().draw_mermaid_png(
+                draw_method=MermaidDrawMethod.API,
+            )
         )
     )
-)
 
 
 # In[ ]:
@@ -1841,13 +1845,14 @@ qualitative_summaries_retrieval_workflow.add_conditional_edges(
 qualitative_summaries_retrieval_workflow_app = qualitative_summaries_retrieval_workflow.compile()
 
 # 6. Display the workflow graph as a Mermaid diagram
-display(
-    Image(
-        qualitative_summaries_retrieval_workflow_app.get_graph().draw_mermaid_png(
-            draw_method=MermaidDrawMethod.API,
+def display_summaries_workflow():
+    display(
+        Image(
+            qualitative_summaries_retrieval_workflow_app.get_graph().draw_mermaid_png(
+                draw_method=MermaidDrawMethod.API,
+            )
         )
     )
-)
 
 
 # In[ ]:
@@ -1897,13 +1902,14 @@ qualitative_book_quotes_retrieval_workflow.add_conditional_edges(
 qualitative_book_quotes_retrieval_workflow_app = qualitative_book_quotes_retrieval_workflow.compile()
 
 # 6. Display the workflow graph as a Mermaid diagram
-display(
-    Image(
-        qualitative_book_quotes_retrieval_workflow_app.get_graph().draw_mermaid_png(
-            draw_method=MermaidDrawMethod.API,
+def display_quotes_workflow():
+    display(
+        Image(
+            qualitative_book_quotes_retrieval_workflow_app.get_graph().draw_mermaid_png(
+                draw_method=MermaidDrawMethod.API,
+            )
         )
     )
-)
 
 
 # ### Test the retreive-and-keep-relevant-content graphs
@@ -1911,15 +1917,17 @@ display(
 # In[ ]:
 
 
-# -----------------------------------------------------------
-# Initialize the state for the retrieval/answering pipeline
-# -----------------------------------------------------------
-# This dictionary defines the initial state for the workflow,
-# specifying the question to be answered.
-# You can modify the "question" value to test different queries.
-init_state = {
-    "question": "worse than getting killed"  # The question to answer
-}
+def test_retrieval_workflows():
+    """Test the retrieval workflows with a sample question"""
+    # -----------------------------------------------------------
+    # Initialize the state for the retrieval/answering pipeline
+    # -----------------------------------------------------------
+    # This dictionary defines the initial state for the workflow,
+    # specifying the question to be answered.
+    # You can modify the "question" value to test different queries.
+    init_state = {
+        "question": "worse than getting killed"  # The question to answer
+    }
 
 
 # In[ ]:
@@ -1975,8 +1983,8 @@ for output in qualitative_book_quotes_retrieval_workflow_app.stream(init_state):
         pass  # The value variable will hold the latest state after each node execution
     pprint("--------------------")  # Print a separator for clarity between steps
 
-# After the workflow completes, print the final relevant context extracted
-print(f'relevant context: {value["relevant_context"]}')
+    # After the workflow completes, print the final relevant context extracted
+    print(f'relevant context: {value["relevant_context"]}')
 
 
 # ### Add a shorter version of the answer verification, checking only if grounded on context
