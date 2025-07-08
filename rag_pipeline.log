@@ -1,0 +1,1447 @@
+2025-07-08 00:01:50,427 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 00:01:50,427 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 00:01:50,427 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 00:01:57,382 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 00:01:57,382 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 00:01:57,383 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 00:01:57,383 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 00:01:57,383 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 00:01:57,383 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 00:01:57,383 - INFO - 📖 Loading PDF document...
+2025-07-08 00:02:05,850 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 00:02:05,850 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 00:02:05,851 - INFO - ✅ Document cleaning completed
+2025-07-08 00:02:05,851 - INFO - 💬 Extracting quotes from document...
+2025-07-08 00:02:05,852 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 00:02:05,852 - INFO - 🚀 Starting chapter summary generation for all chapters...
+2025-07-08 00:02:05,852 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 00:02:05,852 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 00:02:05,852 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 00:02:05,976 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 00:02:06,067 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 00:02:06,067 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 00:02:06,080 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 00:02:06,080 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 00:02:08,041 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 00:02:08,057 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 00:02:08,057 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 00:02:08,104 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 00:02:08,104 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 00:02:14,483 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 00:02:14,486 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 00:02:14,487 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 00:02:14,539 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 00:02:14,539 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 00:02:29,431 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 00:02:29,434 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 00:02:29,434 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 00:02:29,436 - INFO - 📊 Combined summary has 1229 tokens
+2025-07-08 00:02:29,436 - INFO - ✅ Chapter summary completed (5688 characters)
+2025-07-08 00:02:29,436 - INFO - ✅ Chapter 1 summary added to collection
+2025-07-08 00:02:29,436 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 00:02:29,437 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 00:02:29,437 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 00:02:29,462 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 00:02:29,465 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 00:02:29,465 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 00:02:29,465 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 00:02:29,578 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 00:02:29,579 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 08:39:09,455 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 08:39:09,455 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 08:39:09,455 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 08:39:16,257 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 08:39:16,257 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 08:39:16,258 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 08:39:16,258 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 08:39:16,258 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 08:39:16,258 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 08:39:16,258 - INFO - 📖 Loading PDF document...
+2025-07-08 08:39:24,439 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 08:39:24,439 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 08:39:24,440 - INFO - ✅ Document cleaning completed
+2025-07-08 08:39:24,440 - INFO - 💬 Extracting quotes from document...
+2025-07-08 08:39:24,441 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 08:39:24,441 - INFO - 🚀 Starting chapter summary generation for all chapters...
+2025-07-08 08:39:24,441 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 08:39:24,441 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 08:39:24,441 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 08:39:24,556 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 08:39:24,647 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 08:39:24,648 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 08:39:24,660 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 08:39:24,660 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 08:39:26,632 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:39:26,646 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 08:39:26,646 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 08:39:26,700 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:39:26,701 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 08:39:33,051 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:39:33,055 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 08:39:33,055 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 08:39:33,108 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:39:33,109 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 08:39:47,808 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:39:47,812 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 08:39:47,812 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 08:39:47,814 - INFO - 📊 Combined summary has 1214 tokens
+2025-07-08 08:39:47,814 - INFO - ✅ Chapter summary completed (5626 characters)
+2025-07-08 08:39:47,814 - INFO - ✅ Chapter 1 summary added to collection
+2025-07-08 08:39:47,814 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 08:39:47,814 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 08:39:47,814 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 08:39:47,836 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 08:39:47,839 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 08:39:47,839 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 08:39:47,839 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 08:39:47,955 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:39:47,956 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 08:40:43,035 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:40:43,038 - INFO - ✅ Received summary from Groq API
+2025-07-08 08:40:43,038 - INFO - ✅ Chapter summary completed (1578 characters)
+2025-07-08 08:40:43,038 - INFO - ✅ Chapter 2 summary added to collection
+2025-07-08 08:40:43,038 - INFO - 📖 Processing chapter 3/17: 3
+2025-07-08 08:40:43,038 - INFO - 📝 Starting chapter summary creation for chapter: 3
+2025-07-08 08:40:43,038 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 08:40:43,061 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 08:40:43,065 - INFO - 📊 Chapter has 5391 tokens (limit: 6000)
+2025-07-08 08:40:43,065 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 08:40:43,065 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 08:40:43,252 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:40:43,253 - INFO - Retrying request to /openai/v1/chat/completions in 55.000000 seconds
+2025-07-08 08:42:09,848 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:42:09,851 - INFO - ✅ Received summary from Groq API
+2025-07-08 08:42:09,851 - INFO - ✅ Chapter summary completed (1297 characters)
+2025-07-08 08:42:09,852 - INFO - ✅ Chapter 3 summary added to collection
+2025-07-08 08:42:09,852 - INFO - 📖 Processing chapter 4/17: 4
+2025-07-08 08:42:09,852 - INFO - 📝 Starting chapter summary creation for chapter: 4
+2025-07-08 08:42:09,852 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 08:42:09,877 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 08:42:09,882 - INFO - 📊 Chapter has 5582 tokens (limit: 6000)
+2025-07-08 08:42:09,882 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 08:42:09,882 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 08:42:10,001 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:42:10,002 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 08:43:04,922 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:43:04,926 - INFO - ✅ Received summary from Groq API
+2025-07-08 08:43:04,926 - INFO - ✅ Chapter summary completed (1577 characters)
+2025-07-08 08:43:04,926 - INFO - ✅ Chapter 4 summary added to collection
+2025-07-08 08:43:04,926 - INFO - 📖 Processing chapter 5/17: 5
+2025-07-08 08:43:04,926 - INFO - 📝 Starting chapter summary creation for chapter: 5
+2025-07-08 08:43:04,927 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 08:43:04,952 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 08:43:04,960 - INFO - 📊 Chapter has 9998 tokens (limit: 6000)
+2025-07-08 08:43:04,960 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 08:43:04,984 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 08:43:04,984 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 08:43:05,080 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:43:05,080 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 08:43:38,085 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 08:43:38,087 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 08:43:38,087 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 08:43:38,141 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 08:43:38,141 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:24:51,121 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 12:24:51,122 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 12:24:51,122 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 12:24:55,999 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 12:24:56,000 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 12:24:56,000 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 12:24:56,000 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 12:24:56,000 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 12:24:56,000 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 12:24:56,000 - INFO - 📖 Loading PDF document...
+2025-07-08 12:25:02,153 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 12:25:02,154 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 12:25:02,154 - INFO - ✅ Document cleaning completed
+2025-07-08 12:25:02,154 - INFO - 💬 Extracting quotes from document...
+2025-07-08 12:25:02,155 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 12:25:02,155 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 12:25:02,155 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 12:25:02,155 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 12:25:02,155 - INFO - 🆕 Initialized new progress tracker
+2025-07-08 12:25:02,156 - INFO - 🚀 Starting fresh chapter processing
+2025-07-08 12:25:02,156 - INFO - 📂 Loaded 0 existing summaries
+2025-07-08 12:25:02,156 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 12:25:02,156 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 12:25:02,156 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:25:02,314 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:25:05,210 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 12:25:05,211 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:25:05,220 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:25:05,220 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:25:07,071 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:25:07,090 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:25:07,090 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:25:07,160 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:25:07,160 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 12:25:13,444 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:25:13,446 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:25:13,447 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:25:13,509 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:25:13,510 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 12:25:28,240 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:25:28,243 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:25:28,243 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:25:28,243 - INFO - 📊 Combined summary has 1227 tokens
+2025-07-08 12:25:28,243 - INFO - ✅ Chapter summary completed (5647 characters)
+2025-07-08 12:25:28,244 - INFO - 💾 Saved chapter 1 summary (5647 characters)
+2025-07-08 12:25:28,244 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 12:25:28,245 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 12:25:28,245 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:25:28,265 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:25:28,267 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 12:25:28,267 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:25:28,268 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:25:28,433 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:25:28,434 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 12:26:23,697 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:26:23,700 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:26:23,700 - INFO - ✅ Chapter summary completed (1581 characters)
+2025-07-08 12:26:23,702 - INFO - 💾 Saved chapter 2 summary (1581 characters)
+2025-07-08 12:26:23,704 - INFO - 📖 Processing chapter 3/17: 3
+2025-07-08 12:26:23,706 - INFO - 📝 Starting chapter summary creation for chapter: 3
+2025-07-08 12:26:23,706 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:26:23,729 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:26:23,733 - INFO - 📊 Chapter has 5391 tokens (limit: 6000)
+2025-07-08 12:26:23,733 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:26:23,733 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:26:23,862 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:26:23,863 - INFO - Retrying request to /openai/v1/chat/completions in 55.000000 seconds
+2025-07-08 12:27:23,372 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:27:23,375 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:27:23,376 - INFO - ✅ Chapter summary completed (1297 characters)
+2025-07-08 12:27:23,377 - INFO - 💾 Saved chapter 3 summary (1297 characters)
+2025-07-08 12:27:23,379 - INFO - 📖 Processing chapter 4/17: 4
+2025-07-08 12:27:23,380 - INFO - 📝 Starting chapter summary creation for chapter: 4
+2025-07-08 12:27:23,380 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:27:23,400 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:27:23,404 - INFO - 📊 Chapter has 5582 tokens (limit: 6000)
+2025-07-08 12:27:23,404 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:27:23,404 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:27:23,525 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:27:23,525 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 12:28:20,669 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:28:20,672 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:28:20,673 - INFO - ✅ Chapter summary completed (1577 characters)
+2025-07-08 12:28:20,674 - INFO - 💾 Saved chapter 4 summary (1577 characters)
+2025-07-08 12:28:20,676 - INFO - 📖 Processing chapter 5/17: 5
+2025-07-08 12:28:20,677 - INFO - 📝 Starting chapter summary creation for chapter: 5
+2025-07-08 12:28:20,677 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:28:20,698 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:28:20,705 - INFO - 📊 Chapter has 9998 tokens (limit: 6000)
+2025-07-08 12:28:20,706 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:28:20,727 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 12:28:20,727 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 12:28:20,825 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:28:20,826 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:28:53,575 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:28:53,578 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:28:53,579 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 12:28:53,634 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:28:53,635 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:29:24,330 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:29:24,333 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:29:24,333 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 12:29:24,388 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:29:24,389 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 12:30:00,170 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:30:00,172 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:30:00,173 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 12:30:00,229 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:30:00,230 - INFO - Retrying request to /openai/v1/chat/completions in 16.000000 seconds
+2025-07-08 12:30:18,161 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:30:18,164 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 12:30:18,165 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:30:18,168 - INFO - 📊 Combined summary has 1381 tokens
+2025-07-08 12:30:18,169 - INFO - ✅ Chapter summary completed (6289 characters)
+2025-07-08 12:30:18,170 - INFO - 💾 Saved chapter 5 summary (6289 characters)
+2025-07-08 12:30:18,173 - INFO - 📖 Processing chapter 6/17: 6
+2025-07-08 12:30:18,174 - INFO - 📝 Starting chapter summary creation for chapter: 6
+2025-07-08 12:30:18,175 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:30:18,202 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:30:18,207 - INFO - 📊 Chapter has 9186 tokens (limit: 6000)
+2025-07-08 12:30:18,207 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:30:18,225 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 12:30:18,225 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 12:30:18,729 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:30:18,730 - INFO - Retrying request to /openai/v1/chat/completions in 33.000000 seconds
+2025-07-08 12:30:56,603 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:30:56,606 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:30:56,606 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 12:30:56,661 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:30:56,662 - INFO - Retrying request to /openai/v1/chat/completions in 27.000000 seconds
+2025-07-08 12:31:25,862 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:31:25,865 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:31:25,865 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 12:31:26,021 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:31:26,022 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:31:57,090 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:31:57,093 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:31:57,093 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 12:31:57,144 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:31:57,144 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2025-07-08 12:32:11,855 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:32:11,855 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 12:32:11,855 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:32:11,856 - INFO - 📊 Combined summary has 1405 tokens
+2025-07-08 12:32:11,856 - INFO - ✅ Chapter summary completed (6550 characters)
+2025-07-08 12:32:11,857 - INFO - 💾 Saved chapter 6 summary (6550 characters)
+2025-07-08 12:32:11,857 - INFO - 📖 Processing chapter 7/17: 7
+2025-07-08 12:32:11,858 - INFO - 📝 Starting chapter summary creation for chapter: 7
+2025-07-08 12:32:11,858 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:32:11,868 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:32:11,871 - INFO - 📊 Chapter has 6459 tokens (limit: 6000)
+2025-07-08 12:32:11,871 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:32:11,882 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:32:11,882 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:32:11,998 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:32:11,998 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:32:44,689 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:32:44,691 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:32:44,691 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:32:44,749 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:32:44,750 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:33:17,376 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:33:17,380 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:33:17,380 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:33:17,434 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:33:17,435 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2025-07-08 12:33:32,278 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:33:32,280 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:33:32,280 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:33:32,282 - INFO - 📊 Combined summary has 1122 tokens
+2025-07-08 12:33:32,282 - INFO - ✅ Chapter summary completed (5318 characters)
+2025-07-08 12:33:32,285 - INFO - 💾 Saved chapter 7 summary (5318 characters)
+2025-07-08 12:33:32,286 - INFO - 📖 Processing chapter 8/17: 8
+2025-07-08 12:33:32,287 - INFO - 📝 Starting chapter summary creation for chapter: 8
+2025-07-08 12:33:32,287 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:33:32,315 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:33:32,318 - INFO - 📊 Chapter has 4271 tokens (limit: 6000)
+2025-07-08 12:33:32,319 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:33:32,319 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:33:32,443 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:33:32,444 - INFO - Retrying request to /openai/v1/chat/completions in 46.000000 seconds
+2025-07-08 12:34:20,269 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:34:20,271 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:34:20,272 - INFO - ✅ Chapter summary completed (1321 characters)
+2025-07-08 12:34:20,273 - INFO - 💾 Saved chapter 8 summary (1321 characters)
+2025-07-08 12:34:20,274 - INFO - 📖 Processing chapter 9/17: 9
+2025-07-08 12:34:20,277 - INFO - 📝 Starting chapter summary creation for chapter: 9
+2025-07-08 12:34:20,277 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:34:20,300 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:34:20,305 - INFO - 📊 Chapter has 7332 tokens (limit: 6000)
+2025-07-08 12:34:20,305 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:34:20,322 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:34:20,322 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:34:20,433 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:34:20,434 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:34:51,398 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:34:51,402 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:34:51,402 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:34:51,456 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:34:51,457 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 12:35:24,817 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:35:24,819 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:35:24,819 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:35:24,876 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:35:24,877 - INFO - Retrying request to /openai/v1/chat/completions in 19.000000 seconds
+2025-07-08 12:35:45,467 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:35:45,469 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:35:45,470 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:35:45,471 - INFO - 📊 Combined summary has 993 tokens
+2025-07-08 12:35:45,471 - INFO - ✅ Chapter summary completed (4617 characters)
+2025-07-08 12:35:45,473 - INFO - 💾 Saved chapter 9 summary (4617 characters)
+2025-07-08 12:35:45,474 - INFO - 📖 Processing chapter 10/17: 10
+2025-07-08 12:35:45,476 - INFO - 📝 Starting chapter summary creation for chapter: 10
+2025-07-08 12:35:45,476 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:35:45,498 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:35:45,503 - INFO - 📊 Chapter has 6091 tokens (limit: 6000)
+2025-07-08 12:35:45,503 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:35:45,517 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:35:45,517 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:35:45,819 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:35:45,819 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 12:36:21,753 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:36:21,756 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:36:21,757 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:36:21,811 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:36:21,812 - INFO - Retrying request to /openai/v1/chat/completions in 28.000000 seconds
+2025-07-08 12:36:51,948 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:36:51,951 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:36:51,951 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:36:52,002 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:36:52,003 - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2025-07-08 12:37:04,971 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:37:04,974 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:37:04,975 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:37:04,977 - INFO - 📊 Combined summary has 1074 tokens
+2025-07-08 12:37:04,977 - INFO - ✅ Chapter summary completed (5090 characters)
+2025-07-08 12:37:04,978 - INFO - 💾 Saved chapter 10 summary (5090 characters)
+2025-07-08 12:37:04,979 - INFO - 📖 Processing chapter 11/17: 11
+2025-07-08 12:37:04,981 - INFO - 📝 Starting chapter summary creation for chapter: 11
+2025-07-08 12:37:04,981 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:37:05,002 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:37:05,006 - INFO - 📊 Chapter has 5006 tokens (limit: 6000)
+2025-07-08 12:37:05,006 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:37:05,006 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:37:05,145 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:37:05,146 - INFO - Retrying request to /openai/v1/chat/completions in 49.000000 seconds
+2025-07-08 12:37:57,973 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:37:57,976 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:37:57,976 - INFO - ✅ Chapter summary completed (1519 characters)
+2025-07-08 12:37:57,978 - INFO - 💾 Saved chapter 11 summary (1519 characters)
+2025-07-08 12:37:57,979 - INFO - 📖 Processing chapter 12/17: 12
+2025-07-08 12:37:57,981 - INFO - 📝 Starting chapter summary creation for chapter: 12
+2025-07-08 12:37:57,981 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:37:58,003 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:37:58,008 - INFO - 📊 Chapter has 7732 tokens (limit: 6000)
+2025-07-08 12:37:58,008 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:37:58,024 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:37:58,024 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:37:58,148 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:37:58,148 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:38:29,022 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:38:29,025 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:38:29,025 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:38:29,091 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:38:29,092 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:39:03,816 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:39:03,819 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:39:03,820 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:39:03,885 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:39:03,886 - INFO - Retrying request to /openai/v1/chat/completions in 22.000000 seconds
+2025-07-08 12:39:27,879 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:39:27,882 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:39:27,882 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:39:27,883 - INFO - 📊 Combined summary has 1027 tokens
+2025-07-08 12:39:27,884 - INFO - ✅ Chapter summary completed (4863 characters)
+2025-07-08 12:39:27,885 - INFO - 💾 Saved chapter 12 summary (4863 characters)
+2025-07-08 12:39:27,886 - INFO - 📖 Processing chapter 13/17: 13
+2025-07-08 12:39:27,888 - INFO - 📝 Starting chapter summary creation for chapter: 13
+2025-07-08 12:39:27,888 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:39:27,915 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:39:27,918 - INFO - 📊 Chapter has 4667 tokens (limit: 6000)
+2025-07-08 12:39:27,918 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:39:27,918 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:39:28,049 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:39:28,050 - INFO - Retrying request to /openai/v1/chat/completions in 49.000000 seconds
+2025-07-08 12:40:24,922 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:40:24,925 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:40:24,925 - INFO - ✅ Chapter summary completed (1549 characters)
+2025-07-08 12:40:24,927 - INFO - 💾 Saved chapter 13 summary (1549 characters)
+2025-07-08 12:40:24,929 - INFO - 📖 Processing chapter 14/17: 14
+2025-07-08 12:40:24,930 - INFO - 📝 Starting chapter summary creation for chapter: 14
+2025-07-08 12:40:24,930 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:40:24,952 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:40:24,956 - INFO - 📊 Chapter has 5132 tokens (limit: 6000)
+2025-07-08 12:40:24,956 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 12:40:24,956 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 12:40:25,115 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:40:25,115 - INFO - Retrying request to /openai/v1/chat/completions in 46.000000 seconds
+2025-07-08 12:41:12,723 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:41:12,726 - INFO - ✅ Received summary from Groq API
+2025-07-08 12:41:12,726 - INFO - ✅ Chapter summary completed (1132 characters)
+2025-07-08 12:41:12,730 - INFO - 💾 Saved chapter 14 summary (1132 characters)
+2025-07-08 12:41:12,732 - INFO - 📖 Processing chapter 15/17: 15
+2025-07-08 12:41:12,734 - INFO - 📝 Starting chapter summary creation for chapter: 15
+2025-07-08 12:41:12,735 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:41:12,758 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:41:12,763 - INFO - 📊 Chapter has 7545 tokens (limit: 6000)
+2025-07-08 12:41:12,763 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:41:12,778 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:41:12,778 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:41:13,258 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:41:13,259 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 12:41:45,283 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:41:45,285 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:41:45,285 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:41:45,354 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:41:45,355 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 12:42:18,359 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:42:18,363 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:42:18,363 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:42:18,429 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:42:18,429 - INFO - Retrying request to /openai/v1/chat/completions in 21.000000 seconds
+2025-07-08 12:42:41,438 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:42:41,441 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:42:41,441 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:42:41,443 - INFO - 📊 Combined summary has 1072 tokens
+2025-07-08 12:42:41,443 - INFO - ✅ Chapter summary completed (4925 characters)
+2025-07-08 12:42:41,444 - INFO - 💾 Saved chapter 15 summary (4925 characters)
+2025-07-08 12:42:41,446 - INFO - 📖 Processing chapter 16/17: 16
+2025-07-08 12:42:41,447 - INFO - 📝 Starting chapter summary creation for chapter: 16
+2025-07-08 12:42:41,447 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:42:41,470 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:42:41,476 - INFO - 📊 Chapter has 9437 tokens (limit: 6000)
+2025-07-08 12:42:41,476 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:42:41,497 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 12:42:41,497 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 12:42:41,646 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:42:41,647 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 12:43:18,763 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:43:18,766 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:43:18,766 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 12:43:18,825 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:43:18,826 - INFO - Retrying request to /openai/v1/chat/completions in 27.000000 seconds
+2025-07-08 12:43:47,452 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:43:47,456 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:43:47,457 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 12:43:47,523 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:43:47,524 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:44:20,830 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:44:20,835 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:44:20,835 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 12:44:20,914 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:44:20,914 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 12:44:39,776 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:44:39,779 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 12:44:39,779 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:44:39,782 - INFO - 📊 Combined summary has 1437 tokens
+2025-07-08 12:44:39,782 - INFO - ✅ Chapter summary completed (6807 characters)
+2025-07-08 12:44:39,783 - INFO - 💾 Saved chapter 16 summary (6807 characters)
+2025-07-08 12:44:39,785 - INFO - 📖 Processing chapter 17/17: 17
+2025-07-08 12:44:39,786 - INFO - 📝 Starting chapter summary creation for chapter: 17
+2025-07-08 12:44:39,786 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 12:44:39,814 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 12:44:39,819 - INFO - 📊 Chapter has 8081 tokens (limit: 6000)
+2025-07-08 12:44:39,819 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 12:44:39,835 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 12:44:39,835 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 12:44:39,939 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:44:39,939 - INFO - Retrying request to /openai/v1/chat/completions in 28.000000 seconds
+2025-07-08 12:45:09,985 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:45:09,988 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 12:45:09,988 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 12:45:10,100 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:45:10,101 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 12:45:43,217 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:45:43,220 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 12:45:43,221 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 12:45:43,289 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:45:43,291 - INFO - Retrying request to /openai/v1/chat/completions in 27.000000 seconds
+2025-07-08 12:46:15,984 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 12:46:15,986 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 12:46:15,986 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 12:46:15,988 - INFO - 📊 Combined summary has 1013 tokens
+2025-07-08 12:46:15,988 - INFO - ✅ Chapter summary completed (4778 characters)
+2025-07-08 12:46:15,990 - INFO - 💾 Saved chapter 17 summary (4778 characters)
+2025-07-08 12:46:15,992 - INFO - 🎉 All chapters have been processed!
+2025-07-08 12:46:15,992 - INFO - 🎉 Chapter summary generation completed! Total summaries: 17
+2025-07-08 12:46:15,993 - INFO - 🔍 Checking for existing vector stores...
+2025-07-08 12:46:15,993 - INFO - 🔨 Vector stores not found - creating new ones...
+2025-07-08 12:46:15,993 - INFO - 📚 Encoding book into chunks vector store...
+2025-07-08 12:46:15,993 - INFO - 📖 Loading PDF from Harry Potter - Book 1 - The Sorcerers Stone.pdf for encoding...
+2025-07-08 12:46:21,571 - INFO - ✅ PDF loaded with 221 pages
+2025-07-08 12:46:21,571 - INFO - 🔪 Splitting document into chunks (size: 1000, overlap: 200)...
+2025-07-08 12:46:21,578 - INFO - ✅ Document split into 619 chunks
+2025-07-08 12:46:21,578 - INFO - 🧹 Cleaning text chunks...
+2025-07-08 12:46:21,579 - INFO - ✅ Text chunks cleaned
+2025-07-08 12:46:21,579 - INFO - 🤖 Creating OpenAI embeddings...
+2025-07-08 12:46:21,853 - INFO - 🔢 Encoding chunks into FAISS vector store...
+2025-07-08 12:46:23,201 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:46:23,203 - INFO - Retrying request to /embeddings in 0.459322 seconds
+2025-07-08 12:46:24,587 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-07-08 12:46:24,588 - INFO - Retrying request to /embeddings in 0.802206 seconds
+2025-07-08 12:46:26,175 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:24:29,566 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 19:24:29,566 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 19:24:29,566 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 19:24:36,870 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 19:24:36,870 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 19:24:36,871 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 19:24:36,871 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 19:24:36,871 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 19:24:36,871 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 19:24:36,871 - INFO - 📖 Loading PDF document...
+2025-07-08 19:24:45,950 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 19:24:45,951 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 19:24:45,952 - INFO - ✅ Document cleaning completed
+2025-07-08 19:24:45,952 - INFO - 💬 Extracting quotes from document...
+2025-07-08 19:24:45,952 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 19:24:45,952 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 19:24:45,953 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 19:24:45,953 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 19:24:45,953 - INFO - 🔄 Resuming from previous run: 17/17 chapters completed
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 1 summary (5647 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 2 summary (1581 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 3 summary (1297 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 5 summary (6289 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 19:24:45,953 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 12 summary (4863 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 15 summary (4925 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 16 summary (6807 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded chapter 17 summary (4778 characters)
+2025-07-08 19:24:45,954 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 19:24:45,954 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 19:24:45,955 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 19:24:45,955 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:24:46,181 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:24:46,302 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 19:24:46,302 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:24:46,314 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 19:24:46,315 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 19:24:48,273 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:24:48,284 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:24:48,284 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 19:24:48,345 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:24:48,345 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 19:24:54,725 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:24:54,727 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:24:54,728 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 19:24:54,783 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:24:54,784 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 19:25:32,100 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:25:32,101 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:25:32,101 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:25:32,102 - INFO - 📊 Combined summary has 1236 tokens
+2025-07-08 19:25:32,102 - INFO - ✅ Chapter summary completed (5741 characters)
+2025-07-08 19:25:32,102 - INFO - 💾 Saved chapter 1 summary (5741 characters)
+2025-07-08 19:25:32,102 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 19:25:32,103 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 19:25:32,103 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:25:32,117 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:25:32,120 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 19:25:32,120 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:25:32,120 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:25:32,267 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:25:32,268 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 19:26:04,327 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:26:04,329 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:26:04,329 - INFO - ✅ Chapter summary completed (1581 characters)
+2025-07-08 19:26:04,330 - INFO - 💾 Saved chapter 2 summary (1581 characters)
+2025-07-08 19:26:04,330 - INFO - 📖 Processing chapter 3/17: 3
+2025-07-08 19:26:04,331 - INFO - 📝 Starting chapter summary creation for chapter: 3
+2025-07-08 19:26:04,331 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:26:04,350 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:26:04,353 - INFO - 📊 Chapter has 5391 tokens (limit: 6000)
+2025-07-08 19:26:04,353 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:26:04,353 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:26:04,494 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:26:04,494 - INFO - Retrying request to /openai/v1/chat/completions in 56.000000 seconds
+2025-07-08 19:30:30,049 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 19:30:30,049 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 19:30:30,049 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 19:30:37,426 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 19:30:37,426 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 19:30:37,427 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 19:30:37,427 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 19:30:37,427 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 19:30:37,427 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 19:30:37,427 - INFO - 📖 Loading PDF document...
+2025-07-08 19:30:46,343 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 19:30:46,343 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 19:30:46,345 - INFO - ✅ Document cleaning completed
+2025-07-08 19:30:46,345 - INFO - 💬 Extracting quotes from document...
+2025-07-08 19:30:46,345 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 19:30:46,346 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 19:30:46,346 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 19:30:46,346 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 19:30:46,346 - INFO - 🔄 Resuming from previous run: 19/20 chapters completed
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 1 summary (5741 characters)
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 2 summary (1581 characters)
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 3 summary (1297 characters)
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 5 summary (6289 characters)
+2025-07-08 19:30:46,346 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 12 summary (4863 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 15 summary (4925 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 16 summary (6807 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded chapter 17 summary (4778 characters)
+2025-07-08 19:30:46,347 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 19:30:46,347 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 19:30:46,348 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 19:30:46,348 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:30:46,524 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:30:46,619 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 19:30:46,619 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:30:46,632 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 19:30:46,632 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 19:30:48,529 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:30:48,536 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:30:48,536 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 19:30:48,596 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:30:48,597 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 19:30:54,981 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:30:54,983 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:30:54,983 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 19:30:55,052 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:30:55,053 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 19:31:09,861 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:31:09,863 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:31:09,863 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:31:09,865 - INFO - 📊 Combined summary has 1212 tokens
+2025-07-08 19:31:09,865 - INFO - ✅ Chapter summary completed (5632 characters)
+2025-07-08 19:31:09,866 - INFO - 💾 Saved chapter 1 summary (5632 characters)
+2025-07-08 19:31:09,867 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 19:31:09,867 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 19:31:09,867 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:31:09,886 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:31:09,889 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 19:31:09,889 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:31:09,889 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:31:10,026 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:31:10,026 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 19:32:05,128 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:32:05,130 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:32:05,130 - INFO - ✅ Chapter summary completed (1578 characters)
+2025-07-08 19:32:05,131 - INFO - 💾 Saved chapter 2 summary (1578 characters)
+2025-07-08 19:32:05,132 - INFO - 📖 Processing chapter 3/17: 3
+2025-07-08 19:32:05,133 - INFO - 📝 Starting chapter summary creation for chapter: 3
+2025-07-08 19:32:05,133 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:32:05,154 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:32:05,158 - INFO - 📊 Chapter has 5391 tokens (limit: 6000)
+2025-07-08 19:32:05,158 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:32:05,158 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:32:05,268 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:32:05,269 - INFO - Retrying request to /openai/v1/chat/completions in 55.000000 seconds
+2025-07-08 19:33:02,168 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:33:02,170 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:33:02,170 - INFO - ✅ Chapter summary completed (1354 characters)
+2025-07-08 19:33:02,172 - INFO - 💾 Saved chapter 3 summary (1354 characters)
+2025-07-08 19:33:02,173 - INFO - 📖 Processing chapter 4/17: 4
+2025-07-08 19:33:02,173 - INFO - 📝 Starting chapter summary creation for chapter: 4
+2025-07-08 19:33:02,173 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:33:02,193 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:33:02,197 - INFO - 📊 Chapter has 5582 tokens (limit: 6000)
+2025-07-08 19:33:02,197 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:33:02,197 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:33:02,484 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+2025-07-08 19:33:02,485 - INFO - Retrying request to /openai/v1/chat/completions in 0.423453 seconds
+2025-07-08 19:33:03,347 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+2025-07-08 19:33:03,350 - INFO - Retrying request to /openai/v1/chat/completions in 0.849982 seconds
+2025-07-08 19:34:06,457 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 19:34:06,457 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 19:34:06,457 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 19:34:13,314 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 19:34:13,314 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 19:34:13,315 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 19:34:13,315 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 19:34:13,315 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 19:34:13,315 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 19:34:13,315 - INFO - 📖 Loading PDF document...
+2025-07-08 19:34:42,278 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 19:34:42,278 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 19:34:42,278 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 19:34:49,140 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 19:34:49,140 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 19:34:49,141 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 19:34:49,141 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 19:34:49,141 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 19:34:49,141 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 19:34:49,141 - INFO - 📖 Loading PDF document...
+2025-07-08 19:34:57,551 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 19:34:57,551 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 19:34:57,552 - INFO - ✅ Document cleaning completed
+2025-07-08 19:34:57,552 - INFO - 💬 Extracting quotes from document...
+2025-07-08 19:34:57,553 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 19:34:57,553 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 19:34:57,553 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 19:34:57,553 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 19:34:57,553 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 19:34:57,553 - INFO - 🔄 Resuming from previous run: 22/21 chapters completed
+2025-07-08 19:34:57,553 - INFO - 📂 Loaded chapter 1 summary (5632 characters)
+2025-07-08 19:34:57,553 - INFO - 📂 Loaded chapter 2 summary (1578 characters)
+2025-07-08 19:34:57,553 - INFO - 📂 Loaded chapter 3 summary (1354 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 5 summary (6289 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 12 summary (4863 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 19:34:57,554 - INFO - 📂 Loaded chapter 15 summary (4925 characters)
+2025-07-08 19:34:57,555 - INFO - 📂 Loaded chapter 16 summary (6807 characters)
+2025-07-08 19:34:57,555 - INFO - 📂 Loaded chapter 17 summary (4778 characters)
+2025-07-08 19:34:57,555 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 19:34:57,555 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 19:34:57,555 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 19:34:57,555 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:34:57,682 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:34:57,773 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 19:34:57,773 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:34:57,786 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 19:34:57,786 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 19:34:59,627 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:34:59,640 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:34:59,641 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 19:34:59,693 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:34:59,693 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 19:35:06,078 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:35:06,081 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:35:06,081 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 19:35:06,136 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:35:06,137 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 19:51:07,083 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 19:51:07,083 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 19:51:07,083 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 19:51:13,955 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 19:51:13,956 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 19:51:13,956 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 19:51:13,957 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 19:51:13,957 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 19:51:13,957 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 19:51:13,957 - INFO - 📖 Loading PDF document...
+2025-07-08 19:51:22,366 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 19:51:22,366 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 19:51:22,367 - INFO - ✅ Document cleaning completed
+2025-07-08 19:51:22,367 - INFO - 💬 Extracting quotes from document...
+2025-07-08 19:51:22,367 - INFO - ✅ Successfully extracted 0 quotes from the book
+2025-07-08 19:51:22,368 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 19:51:22,368 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 19:51:22,368 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 19:51:22,368 - INFO - 🆕 Initialized new progress tracker
+2025-07-08 19:51:22,368 - INFO - 🚀 Starting fresh chapter processing
+2025-07-08 19:51:22,368 - INFO - 📂 Loaded chapter 1 summary (5632 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 2 summary (1578 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 3 summary (1354 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 5 summary (6289 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 12 summary (4863 characters)
+2025-07-08 19:51:22,369 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 19:51:22,370 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 19:51:22,370 - INFO - 📂 Loaded chapter 15 summary (4925 characters)
+2025-07-08 19:51:22,370 - INFO - 📂 Loaded chapter 16 summary (6807 characters)
+2025-07-08 19:51:22,370 - INFO - 📂 Loaded chapter 17 summary (4778 characters)
+2025-07-08 19:51:22,370 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 19:51:22,370 - INFO - 📖 Processing chapter 1/17: 1
+2025-07-08 19:51:22,370 - INFO - 📝 Starting chapter summary creation for chapter: 1
+2025-07-08 19:51:22,370 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:51:22,494 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:51:22,587 - INFO - 📊 Chapter has 6626 tokens (limit: 6000)
+2025-07-08 19:51:22,587 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:51:22,599 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 19:51:22,600 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 19:51:24,439 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:51:24,450 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:51:24,450 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 19:51:24,512 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:51:24,513 - INFO - Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2025-07-08 19:51:30,887 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:51:30,890 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:51:30,891 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 19:51:30,947 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:51:30,947 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2025-07-08 19:51:45,738 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:51:45,740 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:51:45,741 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:51:45,742 - INFO - 📊 Combined summary has 1212 tokens
+2025-07-08 19:51:45,742 - INFO - ✅ Chapter summary completed (5632 characters)
+2025-07-08 19:51:45,744 - INFO - 💾 Saved chapter 1 summary (5632 characters)
+2025-07-08 19:51:45,745 - INFO - 📖 Processing chapter 2/17: 2
+2025-07-08 19:51:45,746 - INFO - 📝 Starting chapter summary creation for chapter: 2
+2025-07-08 19:51:45,746 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:51:45,769 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:51:45,772 - INFO - 📊 Chapter has 4769 tokens (limit: 6000)
+2025-07-08 19:51:45,772 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:51:45,772 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:51:45,911 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:51:45,912 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 19:52:41,035 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:52:41,037 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:52:41,038 - INFO - ✅ Chapter summary completed (1581 characters)
+2025-07-08 19:52:41,039 - INFO - 💾 Saved chapter 2 summary (1581 characters)
+2025-07-08 19:52:41,039 - INFO - 📖 Processing chapter 3/17: 3
+2025-07-08 19:52:41,040 - INFO - 📝 Starting chapter summary creation for chapter: 3
+2025-07-08 19:52:41,040 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:52:41,061 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:52:41,064 - INFO - 📊 Chapter has 5391 tokens (limit: 6000)
+2025-07-08 19:52:41,064 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:52:41,065 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:52:41,184 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:52:41,184 - INFO - Retrying request to /openai/v1/chat/completions in 55.000000 seconds
+2025-07-08 19:53:38,185 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:53:38,188 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:53:38,188 - INFO - ✅ Chapter summary completed (1354 characters)
+2025-07-08 19:53:38,189 - INFO - 💾 Saved chapter 3 summary (1354 characters)
+2025-07-08 19:53:38,190 - INFO - 📖 Processing chapter 4/17: 4
+2025-07-08 19:53:38,191 - INFO - 📝 Starting chapter summary creation for chapter: 4
+2025-07-08 19:53:38,192 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:53:38,216 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:53:38,219 - INFO - 📊 Chapter has 5582 tokens (limit: 6000)
+2025-07-08 19:53:38,219 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:53:38,220 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:53:38,335 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:53:38,336 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 19:54:33,475 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:54:33,478 - INFO - ✅ Received summary from Groq API
+2025-07-08 19:54:33,479 - INFO - ✅ Chapter summary completed (1577 characters)
+2025-07-08 19:54:33,481 - INFO - 💾 Saved chapter 4 summary (1577 characters)
+2025-07-08 19:54:33,482 - INFO - 📖 Processing chapter 5/17: 5
+2025-07-08 19:54:33,483 - INFO - 📝 Starting chapter summary creation for chapter: 5
+2025-07-08 19:54:33,483 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:54:33,504 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:54:33,510 - INFO - 📊 Chapter has 9998 tokens (limit: 6000)
+2025-07-08 19:54:33,510 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:54:33,532 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 19:54:33,533 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 19:54:33,638 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:54:33,639 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 19:55:06,527 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:55:06,530 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:55:06,530 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 19:55:06,587 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:55:06,588 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 19:55:39,349 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:55:39,352 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:55:39,352 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 19:55:39,402 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:55:39,402 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 19:56:11,784 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:56:11,787 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:56:11,787 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 19:56:11,842 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:56:11,842 - INFO - Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2025-07-08 19:56:33,699 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:56:33,702 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 19:56:33,702 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:56:33,704 - INFO - 📊 Combined summary has 1374 tokens
+2025-07-08 19:56:33,704 - INFO - ✅ Chapter summary completed (6250 characters)
+2025-07-08 19:56:33,705 - INFO - 💾 Saved chapter 5 summary (6250 characters)
+2025-07-08 19:56:33,706 - INFO - 📖 Processing chapter 6/17: 6
+2025-07-08 19:56:33,707 - INFO - 📝 Starting chapter summary creation for chapter: 6
+2025-07-08 19:56:33,707 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:56:33,728 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:56:33,733 - INFO - 📊 Chapter has 9186 tokens (limit: 6000)
+2025-07-08 19:56:33,733 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:56:33,754 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 19:56:33,754 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 19:56:33,857 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:56:33,857 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 19:57:07,499 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:57:07,502 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:57:07,502 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 19:57:07,556 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:57:07,557 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 19:57:40,379 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:57:40,382 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:57:40,382 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 19:57:40,445 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:57:40,446 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 19:58:11,633 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:58:11,636 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:58:11,636 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 19:58:11,712 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:58:11,712 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2025-07-08 19:58:25,487 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:58:25,490 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 19:58:25,490 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:58:25,492 - INFO - 📊 Combined summary has 1405 tokens
+2025-07-08 19:58:25,493 - INFO - ✅ Chapter summary completed (6550 characters)
+2025-07-08 19:58:25,494 - INFO - 💾 Saved chapter 6 summary (6550 characters)
+2025-07-08 19:58:25,496 - INFO - 📖 Processing chapter 7/17: 7
+2025-07-08 19:58:25,497 - INFO - 📝 Starting chapter summary creation for chapter: 7
+2025-07-08 19:58:25,497 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:58:25,517 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:58:25,521 - INFO - 📊 Chapter has 6459 tokens (limit: 6000)
+2025-07-08 19:58:25,521 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 19:58:25,536 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 19:58:25,536 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 19:58:25,644 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:58:25,644 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 19:58:59,385 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:58:59,388 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 19:58:59,388 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 19:58:59,452 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:58:59,453 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 19:59:32,187 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:59:32,190 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 19:59:32,191 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 19:59:32,245 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:59:32,246 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2025-07-08 19:59:46,114 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 19:59:46,134 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 19:59:46,134 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 19:59:46,135 - INFO - 📊 Combined summary has 1122 tokens
+2025-07-08 19:59:46,135 - INFO - ✅ Chapter summary completed (5318 characters)
+2025-07-08 19:59:46,137 - INFO - 💾 Saved chapter 7 summary (5318 characters)
+2025-07-08 19:59:46,138 - INFO - 📖 Processing chapter 8/17: 8
+2025-07-08 19:59:46,138 - INFO - 📝 Starting chapter summary creation for chapter: 8
+2025-07-08 19:59:46,138 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 19:59:46,154 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 19:59:46,156 - INFO - 📊 Chapter has 4271 tokens (limit: 6000)
+2025-07-08 19:59:46,156 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 19:59:46,156 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 19:59:46,274 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 19:59:46,275 - INFO - Retrying request to /openai/v1/chat/completions in 47.000000 seconds
+2025-07-08 20:00:35,065 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:00:35,068 - INFO - ✅ Received summary from Groq API
+2025-07-08 20:00:35,069 - INFO - ✅ Chapter summary completed (1321 characters)
+2025-07-08 20:00:35,070 - INFO - 💾 Saved chapter 8 summary (1321 characters)
+2025-07-08 20:00:35,071 - INFO - 📖 Processing chapter 9/17: 9
+2025-07-08 20:00:35,072 - INFO - 📝 Starting chapter summary creation for chapter: 9
+2025-07-08 20:00:35,072 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:00:35,093 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:00:35,097 - INFO - 📊 Chapter has 7332 tokens (limit: 6000)
+2025-07-08 20:00:35,097 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:00:35,113 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 20:00:35,113 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 20:00:35,261 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:00:35,262 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 20:01:06,148 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:01:06,156 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:01:06,156 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 20:01:06,205 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:01:06,205 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 20:01:38,041 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:01:38,044 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:01:38,045 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 20:01:38,101 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:01:38,101 - INFO - Retrying request to /openai/v1/chat/completions in 21.000000 seconds
+2025-07-08 20:02:00,774 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:02:00,777 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:02:00,777 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:02:00,779 - INFO - 📊 Combined summary has 993 tokens
+2025-07-08 20:02:00,779 - INFO - ✅ Chapter summary completed (4617 characters)
+2025-07-08 20:02:00,780 - INFO - 💾 Saved chapter 9 summary (4617 characters)
+2025-07-08 20:02:00,781 - INFO - 📖 Processing chapter 10/17: 10
+2025-07-08 20:02:00,782 - INFO - 📝 Starting chapter summary creation for chapter: 10
+2025-07-08 20:02:00,782 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:02:00,803 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:02:00,807 - INFO - 📊 Chapter has 6091 tokens (limit: 6000)
+2025-07-08 20:02:00,807 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:02:00,821 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 20:02:00,821 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 20:02:00,935 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:02:00,936 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:02:33,757 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:02:33,760 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:02:33,760 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 20:02:33,815 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:02:33,815 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:03:07,058 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:03:07,061 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:03:07,061 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 20:03:07,119 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:03:07,119 - INFO - Retrying request to /openai/v1/chat/completions in 7.000000 seconds
+2025-07-08 20:03:15,735 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:03:15,737 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:03:15,737 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:03:15,739 - INFO - 📊 Combined summary has 1074 tokens
+2025-07-08 20:03:15,739 - INFO - ✅ Chapter summary completed (5090 characters)
+2025-07-08 20:03:15,740 - INFO - 💾 Saved chapter 10 summary (5090 characters)
+2025-07-08 20:03:15,741 - INFO - 📖 Processing chapter 11/17: 11
+2025-07-08 20:03:15,741 - INFO - 📝 Starting chapter summary creation for chapter: 11
+2025-07-08 20:03:15,741 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:03:15,763 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:03:15,766 - INFO - 📊 Chapter has 5006 tokens (limit: 6000)
+2025-07-08 20:03:15,766 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 20:03:15,766 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 20:03:15,882 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:03:15,883 - INFO - Retrying request to /openai/v1/chat/completions in 53.000000 seconds
+2025-07-08 20:04:10,723 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:04:10,726 - INFO - ✅ Received summary from Groq API
+2025-07-08 20:04:10,727 - INFO - ✅ Chapter summary completed (1519 characters)
+2025-07-08 20:04:10,728 - INFO - 💾 Saved chapter 11 summary (1519 characters)
+2025-07-08 20:04:10,729 - INFO - 📖 Processing chapter 12/17: 12
+2025-07-08 20:04:10,730 - INFO - 📝 Starting chapter summary creation for chapter: 12
+2025-07-08 20:04:10,730 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:04:10,751 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:04:10,755 - INFO - 📊 Chapter has 7732 tokens (limit: 6000)
+2025-07-08 20:04:10,755 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:04:10,771 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 20:04:10,772 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 20:04:10,889 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:04:10,890 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:04:43,785 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:04:43,793 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:04:43,793 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 20:04:43,863 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:04:43,864 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:05:16,569 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:05:16,571 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:05:16,572 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 20:05:16,630 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:05:16,630 - INFO - Retrying request to /openai/v1/chat/completions in 24.000000 seconds
+2025-07-08 20:05:42,478 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:05:42,481 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:05:42,481 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:05:42,483 - INFO - 📊 Combined summary has 1020 tokens
+2025-07-08 20:05:42,483 - INFO - ✅ Chapter summary completed (4827 characters)
+2025-07-08 20:05:42,485 - INFO - 💾 Saved chapter 12 summary (4827 characters)
+2025-07-08 20:05:42,486 - INFO - 📖 Processing chapter 13/17: 13
+2025-07-08 20:05:42,487 - INFO - 📝 Starting chapter summary creation for chapter: 13
+2025-07-08 20:05:42,487 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:05:42,509 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:05:42,512 - INFO - 📊 Chapter has 4667 tokens (limit: 6000)
+2025-07-08 20:05:42,512 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 20:05:42,512 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 20:05:42,653 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:05:42,654 - INFO - Retrying request to /openai/v1/chat/completions in 49.000000 seconds
+2025-07-08 20:06:33,657 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:06:33,661 - INFO - ✅ Received summary from Groq API
+2025-07-08 20:06:33,661 - INFO - ✅ Chapter summary completed (1549 characters)
+2025-07-08 20:06:33,663 - INFO - 💾 Saved chapter 13 summary (1549 characters)
+2025-07-08 20:06:33,664 - INFO - 📖 Processing chapter 14/17: 14
+2025-07-08 20:06:33,665 - INFO - 📝 Starting chapter summary creation for chapter: 14
+2025-07-08 20:06:33,665 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:06:33,686 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:06:33,689 - INFO - 📊 Chapter has 5132 tokens (limit: 6000)
+2025-07-08 20:06:33,689 - INFO - 📝 Chapter fits within token limit - summarizing in one go
+2025-07-08 20:06:33,689 - INFO - 🤖 Calling Groq API for chapter summary...
+2025-07-08 20:06:33,798 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:06:33,799 - INFO - Retrying request to /openai/v1/chat/completions in 52.000000 seconds
+2025-07-08 20:07:53,419 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:07:53,422 - INFO - ✅ Received summary from Groq API
+2025-07-08 20:07:53,423 - INFO - ✅ Chapter summary completed (1132 characters)
+2025-07-08 20:07:53,424 - INFO - 💾 Saved chapter 14 summary (1132 characters)
+2025-07-08 20:07:53,425 - INFO - 📖 Processing chapter 15/17: 15
+2025-07-08 20:07:53,426 - INFO - 📝 Starting chapter summary creation for chapter: 15
+2025-07-08 20:07:53,426 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:07:53,449 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:07:53,454 - INFO - 📊 Chapter has 7545 tokens (limit: 6000)
+2025-07-08 20:07:53,454 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:07:53,471 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 20:07:53,471 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 20:07:53,587 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:07:53,588 - INFO - Retrying request to /openai/v1/chat/completions in 25.000000 seconds
+2025-07-08 20:08:20,560 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:08:20,563 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:08:20,563 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 20:08:20,619 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:08:20,620 - INFO - Retrying request to /openai/v1/chat/completions in 29.000000 seconds
+2025-07-08 20:08:51,280 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:08:51,283 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:08:51,284 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 20:08:51,337 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:08:51,338 - INFO - Retrying request to /openai/v1/chat/completions in 23.000000 seconds
+2025-07-08 20:09:16,397 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:09:16,400 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:09:16,401 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:09:16,402 - INFO - 📊 Combined summary has 997 tokens
+2025-07-08 20:09:16,402 - INFO - ✅ Chapter summary completed (4569 characters)
+2025-07-08 20:09:16,404 - INFO - 💾 Saved chapter 15 summary (4569 characters)
+2025-07-08 20:09:16,405 - INFO - 📖 Processing chapter 16/17: 16
+2025-07-08 20:09:16,406 - INFO - 📝 Starting chapter summary creation for chapter: 16
+2025-07-08 20:09:16,406 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:09:16,427 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:09:16,432 - INFO - 📊 Chapter has 9437 tokens (limit: 6000)
+2025-07-08 20:09:16,432 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:09:16,453 - INFO - 🔪 Split chapter into 4 chunks
+2025-07-08 20:09:16,453 - INFO - 🤖 Summarizing chunk 1/4...
+2025-07-08 20:09:16,569 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:09:16,569 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 20:09:50,481 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:09:50,484 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:09:50,484 - INFO - 🤖 Summarizing chunk 2/4...
+2025-07-08 20:09:50,538 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:09:50,539 - INFO - Retrying request to /openai/v1/chat/completions in 30.000000 seconds
+2025-07-08 20:10:22,316 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:10:22,320 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:10:22,320 - INFO - 🤖 Summarizing chunk 3/4...
+2025-07-08 20:10:22,377 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:10:22,378 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:10:55,614 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:10:55,616 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:10:55,617 - INFO - 🤖 Summarizing chunk 4/4...
+2025-07-08 20:10:55,671 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:10:55,672 - INFO - Retrying request to /openai/v1/chat/completions in 14.000000 seconds
+2025-07-08 20:11:11,777 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:11:11,780 - INFO - ✅ Chunk 4 summary completed
+2025-07-08 20:11:11,780 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:11:11,782 - INFO - 📊 Combined summary has 1449 tokens
+2025-07-08 20:11:11,782 - INFO - ✅ Chapter summary completed (6855 characters)
+2025-07-08 20:11:11,783 - INFO - 💾 Saved chapter 16 summary (6855 characters)
+2025-07-08 20:11:11,784 - INFO - 📖 Processing chapter 17/17: 17
+2025-07-08 20:11:11,785 - INFO - 📝 Starting chapter summary creation for chapter: 17
+2025-07-08 20:11:11,785 - INFO - 🤖 Initializing Groq LLM with model: llama3-70b-8192
+2025-07-08 20:11:11,806 - INFO - 🔢 Counting tokens in chapter...
+2025-07-08 20:11:11,810 - INFO - 📊 Chapter has 8081 tokens (limit: 6000)
+2025-07-08 20:11:11,810 - INFO - 📝 Chapter exceeds token limit - splitting into chunks
+2025-07-08 20:11:11,827 - INFO - 🔪 Split chapter into 3 chunks
+2025-07-08 20:11:11,827 - INFO - 🤖 Summarizing chunk 1/3...
+2025-07-08 20:11:11,947 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:11:11,948 - INFO - Retrying request to /openai/v1/chat/completions in 31.000000 seconds
+2025-07-08 20:11:45,057 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:11:45,059 - INFO - ✅ Chunk 1 summary completed
+2025-07-08 20:11:45,059 - INFO - 🤖 Summarizing chunk 2/3...
+2025-07-08 20:11:45,119 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:11:45,120 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-07-08 20:12:19,354 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:12:19,357 - INFO - ✅ Chunk 2 summary completed
+2025-07-08 20:12:19,358 - INFO - 🤖 Summarizing chunk 3/3...
+2025-07-08 20:12:19,410 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:12:19,410 - INFO - Retrying request to /openai/v1/chat/completions in 27.000000 seconds
+2025-07-08 20:12:48,650 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-08 20:12:48,652 - INFO - ✅ Chunk 3 summary completed
+2025-07-08 20:12:48,652 - INFO - 🔗 Combining chunk summaries...
+2025-07-08 20:12:48,653 - INFO - 📊 Combined summary has 1101 tokens
+2025-07-08 20:12:48,653 - INFO - ✅ Chapter summary completed (5190 characters)
+2025-07-08 20:12:48,654 - INFO - 💾 Saved chapter 17 summary (5190 characters)
+2025-07-08 20:12:48,654 - INFO - 🎉 All chapters have been processed!
+2025-07-08 20:12:48,654 - INFO - 🎉 Chapter summary generation completed! Total summaries: 34
+2025-07-08 20:12:48,654 - INFO - 🔍 Checking for existing vector stores...
+2025-07-08 20:12:48,654 - INFO - 🔨 Vector stores not found - creating new ones...
+2025-07-08 20:12:48,655 - INFO - 📚 Encoding book into chunks vector store...
+2025-07-08 20:12:48,655 - INFO - 📖 Loading PDF from Harry Potter - Book 1 - The Sorcerers Stone.pdf for encoding...
+2025-07-08 20:12:57,214 - INFO - ✅ PDF loaded with 221 pages
+2025-07-08 20:12:57,215 - INFO - 🔪 Splitting document into chunks (size: 1000, overlap: 200)...
+2025-07-08 20:12:57,224 - INFO - ✅ Document split into 619 chunks
+2025-07-08 20:12:57,224 - INFO - 🧹 Cleaning text chunks...
+2025-07-08 20:12:57,225 - INFO - ✅ Text chunks cleaned
+2025-07-08 20:12:57,225 - INFO - 🤖 Creating local embeddings...
+2025-07-08 20:12:57,225 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:13:01,375 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:13:05,615 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:13:05,615 - INFO - 🔢 Encoding chunks into FAISS vector store...
+2025-07-08 20:13:11,600 - INFO - Loading faiss.
+2025-07-08 20:13:12,432 - INFO - Successfully loaded faiss.
+2025-07-08 20:13:12,453 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 20:13:12,463 - INFO - ✅ FAISS vector store created successfully
+2025-07-08 20:13:12,464 - INFO - ✅ Book chunks vector store created
+2025-07-08 20:13:12,464 - INFO - 📝 Encoding chapter summaries into vector store...
+2025-07-08 20:13:12,464 - INFO - 📝 Encoding 34 chapter summaries...
+2025-07-08 20:13:12,464 - INFO - 🤖 Creating local embeddings for chapter summaries...
+2025-07-08 20:13:12,464 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:13:12,465 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:13:16,310 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:13:16,311 - INFO - 🔢 Encoding chapter summaries into FAISS vector store...
+2025-07-08 20:13:16,712 - INFO - ✅ Chapter summaries vector store created successfully
+2025-07-08 20:13:16,712 - INFO - ✅ Chapter summaries vector store created
+2025-07-08 20:13:16,712 - INFO - 💬 Encoding book quotes into vector store...
+2025-07-08 20:13:16,712 - INFO - 💬 Encoding 0 book quotes...
+2025-07-08 20:13:16,712 - INFO - 🤖 Creating local embeddings for book quotes...
+2025-07-08 20:13:16,712 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:13:16,713 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:13:20,178 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:13:20,178 - INFO - 🔢 Encoding book quotes into FAISS vector store...
+2025-07-08 20:46:38,696 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 20:46:38,696 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 20:46:38,696 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 20:46:46,140 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 20:46:46,140 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 20:46:46,141 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 20:46:46,141 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 20:46:46,141 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 20:46:46,141 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 20:46:46,141 - INFO - 📖 Loading PDF document...
+2025-07-08 20:46:55,066 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 20:46:55,067 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 20:46:55,068 - INFO - ✅ Document cleaning completed
+2025-07-08 20:46:55,068 - INFO - 💬 Extracting quotes from document...
+2025-07-08 20:46:55,085 - INFO - ✅ Successfully extracted 1302 quotes from the book
+2025-07-08 20:46:55,086 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 20:46:55,086 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 20:46:55,086 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 20:46:55,086 - INFO - 🔄 Resuming from previous run: 17/17 chapters completed
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 1 summary (5632 characters)
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 2 summary (1581 characters)
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 3 summary (1354 characters)
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 5 summary (6250 characters)
+2025-07-08 20:46:55,086 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 12 summary (4827 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 15 summary (4569 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 16 summary (6855 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded chapter 17 summary (5190 characters)
+2025-07-08 20:46:55,087 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 20:46:55,087 - INFO - 🎉 All chapters have been processed!
+2025-07-08 20:46:55,087 - INFO - 🎉 Chapter summary generation completed! Total summaries: 17
+2025-07-08 20:46:55,087 - INFO - 🔍 Checking for existing vector stores...
+2025-07-08 20:46:55,087 - INFO - 🔨 Vector stores not found - creating new ones...
+2025-07-08 20:46:55,087 - INFO - 📚 Encoding book into chunks vector store...
+2025-07-08 20:46:55,087 - INFO - 📖 Loading PDF from Harry Potter - Book 1 - The Sorcerers Stone.pdf for encoding...
+2025-07-08 20:47:04,108 - INFO - ✅ PDF loaded with 221 pages
+2025-07-08 20:47:04,108 - INFO - 🔪 Splitting document into chunks (size: 1000, overlap: 200)...
+2025-07-08 20:47:04,117 - INFO - ✅ Document split into 619 chunks
+2025-07-08 20:47:04,117 - INFO - 🧹 Cleaning text chunks...
+2025-07-08 20:47:04,119 - INFO - ✅ Text chunks cleaned
+2025-07-08 20:47:04,119 - INFO - 🤖 Creating local embeddings...
+2025-07-08 20:47:04,119 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:47:07,500 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:47:11,836 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:47:11,836 - INFO - 🔢 Encoding chunks into FAISS vector store...
+2025-07-08 20:47:19,367 - INFO - Loading faiss.
+2025-07-08 20:47:19,388 - INFO - Successfully loaded faiss.
+2025-07-08 20:47:19,391 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 20:47:19,401 - INFO - ✅ FAISS vector store created successfully
+2025-07-08 20:47:19,402 - INFO - ✅ Book chunks vector store created
+2025-07-08 20:47:19,402 - INFO - 📝 Encoding chapter summaries into vector store...
+2025-07-08 20:47:19,402 - INFO - 📝 Encoding 17 chapter summaries...
+2025-07-08 20:47:19,402 - INFO - 🤖 Creating local embeddings for chapter summaries...
+2025-07-08 20:47:19,402 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:47:19,403 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:47:22,780 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:47:22,780 - INFO - 🔢 Encoding chapter summaries into FAISS vector store...
+2025-07-08 20:47:23,093 - INFO - ✅ Chapter summaries vector store created successfully
+2025-07-08 20:47:23,094 - INFO - ✅ Chapter summaries vector store created
+2025-07-08 20:47:23,094 - INFO - 💬 Encoding book quotes into vector store...
+2025-07-08 20:47:23,094 - INFO - 💬 Encoding 1302 book quotes...
+2025-07-08 20:47:23,094 - INFO - 🤖 Creating local embeddings for book quotes...
+2025-07-08 20:47:23,094 - INFO - 🤖 Creating local embedding model...
+2025-07-08 20:47:23,095 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 20:47:26,739 - INFO - ✅ Local embedding model created successfully
+2025-07-08 20:47:26,739 - INFO - 🔢 Encoding book quotes into FAISS vector store...
+2025-07-08 20:47:30,722 - INFO - ✅ Book quotes vector store created successfully
+2025-07-08 20:47:30,722 - INFO - ✅ Book quotes vector store created
+2025-07-08 20:47:30,722 - INFO - 💾 Saving vector stores to disk...
+2025-07-08 20:47:30,728 - INFO - ✅ All vector stores saved to disk
+2025-07-08 20:47:30,728 - INFO - 🔍 Creating retrievers from vector stores...
+2025-07-08 20:47:30,728 - INFO - 📚 Creating chunks retriever (k=1)...
+2025-07-08 20:47:30,728 - INFO - 📝 Creating chapter summaries retriever (k=1)...
+2025-07-08 20:47:30,728 - INFO - 💬 Creating book quotes retriever (k=10)...
+2025-07-08 20:47:30,728 - INFO - ✅ All retrievers created successfully
+2025-07-08 20:47:33,439 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:47:33,440 - INFO - Retrying request to /chat/completions in 0.478691 seconds
+2025-07-08 20:47:35,333 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 20:47:35,333 - INFO - Retrying request to /chat/completions in 0.812242 seconds
+2025-07-08 20:47:36,703 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:01:51,151 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 21:01:51,151 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 21:01:51,151 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 21:01:58,020 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 21:01:58,020 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 21:01:58,021 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 21:01:58,021 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 21:01:58,021 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 21:01:58,021 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 21:01:58,021 - INFO - 📖 Loading PDF document...
+2025-07-08 21:02:06,470 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 21:02:06,470 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 21:02:06,471 - INFO - ✅ Document cleaning completed
+2025-07-08 21:02:06,471 - INFO - 💬 Extracting quotes from document...
+2025-07-08 21:02:06,489 - INFO - ✅ Successfully extracted 1302 quotes from the book
+2025-07-08 21:02:06,489 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 21:02:06,489 - INFO - 📁 Created summaries directory: chapter_summaries
+2025-07-08 21:02:06,489 - INFO - 📁 Progress tracker file: progress_tracker.json
+2025-07-08 21:02:06,489 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 21:02:06,489 - INFO - 🔄 Resuming from previous run: 17/17 chapters completed
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 1 summary (5632 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 2 summary (1581 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 3 summary (1354 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 5 summary (6250 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 21:02:06,490 - INFO - 📂 Loaded chapter 12 summary (4827 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded chapter 15 summary (4569 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded chapter 16 summary (6855 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded chapter 17 summary (5190 characters)
+2025-07-08 21:02:06,491 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 21:02:06,491 - INFO - 🎉 All chapters have been processed!
+2025-07-08 21:02:06,491 - INFO - 🎉 Chapter summary generation completed! Total summaries: 17
+2025-07-08 21:02:06,491 - INFO - 🔍 Checking for existing vector stores...
+2025-07-08 21:02:06,491 - INFO - 📂 Loading existing vector stores from disk...
+2025-07-08 21:02:06,491 - INFO - 🤖 Creating local embedding model...
+2025-07-08 21:02:09,618 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 21:02:13,780 - INFO - ✅ Local embedding model created successfully
+2025-07-08 21:02:13,780 - INFO - 📖 Loading chunks vector store...
+2025-07-08 21:02:13,782 - INFO - Loading faiss.
+2025-07-08 21:02:13,802 - INFO - Successfully loaded faiss.
+2025-07-08 21:02:13,805 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 21:02:13,808 - INFO - 📖 Loading chapter summaries vector store...
+2025-07-08 21:02:13,808 - INFO - 📖 Loading book quotes vector store...
+2025-07-08 21:02:13,952 - INFO - ✅ All vector stores loaded successfully
+2025-07-08 21:02:13,952 - INFO - 🔍 Creating retrievers from vector stores...
+2025-07-08 21:02:13,952 - INFO - 📚 Creating chunks retriever (k=1)...
+2025-07-08 21:02:13,953 - INFO - 📝 Creating chapter summaries retriever (k=1)...
+2025-07-08 21:02:13,953 - INFO - 💬 Creating book quotes retriever (k=10)...
+2025-07-08 21:02:13,953 - INFO - ✅ All retrievers created successfully
+2025-07-08 21:02:15,033 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:02:15,034 - INFO - Retrying request to /chat/completions in 0.463750 seconds
+2025-07-08 21:02:15,800 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:02:15,801 - INFO - Retrying request to /chat/completions in 0.921996 seconds
+2025-07-08 21:02:17,001 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:16:42,520 - INFO - 🚀 Starting RAG Pipeline with comprehensive logging enabled
+2025-07-08 21:16:42,521 - INFO - 📖 Loading PDF from: Harry Potter - Book 1 - The Sorcerers Stone.pdf
+2025-07-08 21:16:42,521 - INFO - 🔪 Splitting PDF into chapters...
+2025-07-08 21:16:49,909 - INFO - ✅ Successfully split PDF into 17 chapters
+2025-07-08 21:16:49,910 - INFO - 🧹 Cleaning chapter text (replacing tabs with spaces)...
+2025-07-08 21:16:49,910 - INFO - ✅ Chapter text cleaning completed
+2025-07-08 21:16:49,910 - INFO - 📊 Total chapters ready for processing: 17
+2025-07-08 21:16:49,910 - INFO - 📚 Loading PDF for quote extraction...
+2025-07-08 21:16:49,910 - INFO - 📄 Creating PyPDFLoader...
+2025-07-08 21:16:49,910 - INFO - 📖 Loading PDF document...
+2025-07-08 21:16:58,820 - INFO - ✅ PDF loaded successfully with 221 pages
+2025-07-08 21:16:58,820 - INFO - 🧹 Cleaning document text for quote extraction...
+2025-07-08 21:16:58,821 - INFO - ✅ Document cleaning completed
+2025-07-08 21:16:58,821 - INFO - 💬 Extracting quotes from document...
+2025-07-08 21:16:58,839 - INFO - ✅ Successfully extracted 1302 quotes from the book
+2025-07-08 21:16:58,839 - INFO - 🚀 Starting restartable chapter summary generation...
+2025-07-08 21:16:58,839 - INFO - 📁 Created summaries directory: data/chapter_summaries
+2025-07-08 21:16:58,839 - INFO - 📁 Progress tracker file: data/progress_tracker.json
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded existing progress: 17 chapters tracked
+2025-07-08 21:16:58,840 - INFO - 🔄 Resuming from previous run: 17/17 chapters completed
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 1 summary (5632 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 2 summary (1581 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 3 summary (1354 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 4 summary (1577 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 5 summary (6250 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 6 summary (6550 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 7 summary (5318 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 8 summary (1321 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 9 summary (4617 characters)
+2025-07-08 21:16:58,840 - INFO - 📂 Loaded chapter 10 summary (5090 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 11 summary (1519 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 12 summary (4827 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 13 summary (1549 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 14 summary (1132 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 15 summary (4569 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 16 summary (6855 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded chapter 17 summary (5190 characters)
+2025-07-08 21:16:58,841 - INFO - 📂 Loaded 17 existing summaries
+2025-07-08 21:16:58,841 - INFO - 🎉 All chapters have been processed!
+2025-07-08 21:16:58,841 - INFO - 🎉 Chapter summary generation completed! Total summaries: 17
+2025-07-08 21:16:58,841 - INFO - 🔍 Checking for existing vector stores...
+2025-07-08 21:16:58,841 - INFO - 📂 Loading existing vector stores from disk...
+2025-07-08 21:16:58,841 - INFO - 🤖 Creating local embedding model...
+2025-07-08 21:17:02,214 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-08 21:17:06,425 - INFO - ✅ Local embedding model created successfully
+2025-07-08 21:17:06,426 - INFO - 📖 Loading chunks vector store...
+2025-07-08 21:17:06,428 - INFO - Loading faiss.
+2025-07-08 21:17:06,454 - INFO - Successfully loaded faiss.
+2025-07-08 21:17:06,457 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-08 21:17:06,461 - INFO - 📖 Loading chapter summaries vector store...
+2025-07-08 21:17:06,461 - INFO - 📖 Loading book quotes vector store...
+2025-07-08 21:17:06,652 - INFO - ✅ All vector stores loaded successfully
+2025-07-08 21:17:06,652 - INFO - 🔍 Creating retrievers from vector stores...
+2025-07-08 21:17:06,652 - INFO - 📚 Creating chunks retriever (k=1)...
+2025-07-08 21:17:06,652 - INFO - 📝 Creating chapter summaries retriever (k=1)...
+2025-07-08 21:17:06,652 - INFO - 💬 Creating book quotes retriever (k=10)...
+2025-07-08 21:17:06,652 - INFO - ✅ All retrievers created successfully
+2025-07-08 21:17:07,808 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:17:07,808 - INFO - Retrying request to /chat/completions in 0.375299 seconds
+2025-07-08 21:17:09,184 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-07-08 21:17:09,185 - INFO - Retrying request to /chat/completions in 0.751089 seconds
+2025-07-08 21:17:11,745 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"

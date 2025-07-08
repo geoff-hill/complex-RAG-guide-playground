@@ -10,3 +10,6 @@ PyPDF2
 pylcs
 pypdf
 langchain_openai
+sentence-transformers
+torch
+transformers

@@ -130,16 +130,38 @@ def split_into_chapters(book_path):
         chapter_num = 1
         for i in range(1, len(chapters), 2):
             chapter_text = chapters[i] + chapters[i + 1]  # Combine title and content
-            doc = Document(page_content=chapter_text, metadata={"chapter": chapter_num})
+            # Clean up the text spacing
+            cleaned_text = clean_text_spacing(chapter_text)
+            doc = Document(page_content=cleaned_text, metadata={"chapter": chapter_num})
             chapter_docs.append(doc)
             chapter_num += 1
 
     return chapter_docs
 
 
+def clean_text_spacing(text):
+    """
+    Cleans up excessive spacing in text extracted from PDFs.
+    
+    Args:
+        text (str): The input text with excessive spacing.
+        
+    Returns:
+        str: The text with normalized spacing.
+    """
+    # Replace multiple spaces with single space
+    text = re.sub(r'\s+', ' ', text)
+    # Replace multiple newlines with single newline
+    text = re.sub(r'\n\s*\n', '\n', text)
+    # Clean up spaces around punctuation
+    text = re.sub(r'\s+([.,!?;:])', r'\1', text)
+    return text.strip()
+
+
 def extract_book_quotes_as_documents(documents, min_length=50):
     """
     Extracts quotes from documents and returns them as separate Document objects.
+    Handles both straight quotes and smart quotes.
 
     Args:
         documents (list): List of Document objects to extract quotes from.
@@ -149,17 +171,27 @@ def extract_book_quotes_as_documents(documents, min_length=50):
         list: List of Document objects containing extracted quotes.
     """
     quotes_as_documents = []
-    # Pattern for quotes longer than min_length characters, including line breaks
-    quote_pattern_longer_than_min_length = re.compile(rf'"(.{{{min_length},}}?)"', re.DOTALL)
-
+    
+    # Patterns for different types of quotes
+    quote_patterns = [
+        rf'"(.{{{min_length},}}?)"',  # Straight double quotes
+        rf'\u201c(.{{{min_length},}}?)\u201d',  # Smart quotes (left and right)
+        rf'\u2018(.{{{min_length},}}?)\u2019',  # Smart single quotes
+    ]
+    
     for doc in documents:
         content = doc.page_content
         content = content.replace('\n', ' ')
-        found_quotes = quote_pattern_longer_than_min_length.findall(content)
         
-        for quote in found_quotes:
-            quote_doc = Document(page_content=quote)
-            quotes_as_documents.append(quote_doc)
+        for pattern in quote_patterns:
+            found_quotes = re.findall(pattern, content, re.DOTALL)
+            
+            for quote in found_quotes:
+                # Clean up the quote text
+                cleaned_quote = clean_text_spacing(quote)
+                if len(cleaned_quote) >= min_length:
+                    quote_doc = Document(page_content=cleaned_quote)
+                    quotes_as_documents.append(quote_doc)
     
     return quotes_as_documents
 

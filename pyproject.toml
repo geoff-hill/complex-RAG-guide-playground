@@ -37,6 +37,9 @@ dependencies = [
     "torch",
     "torchvision",
     "torchaudio",
+    "sentence-transformers>=5.0.0",
+    "transformers>=4.53.1",
+    "langchain-huggingface>=0.3.0",
 ]
 
 # Optional: Add development dependencies here

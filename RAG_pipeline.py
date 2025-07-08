@@ -15,7 +15,8 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings 
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings 
 
 # --- Prompting and Document Utilities ---
 from langchain.prompts import PromptTemplate
@@ -35,6 +36,12 @@ from time import monotonic
 from dotenv import load_dotenv
 from pprint import pprint
 import os
+import logging
+import sys
+import json
+import signal
+from datetime import datetime
+from pathlib import Path
 
 # --- Datasets and Typing ---
 from datasets import Dataset
@@ -72,6 +79,18 @@ load_dotenv(override=True)
 # --- Set environment variable for debugging (optional) ---
 os.environ["PYDEVD_WARN_EVALUATION_TIMEOUT"] = "100000"
 
+# --- Setup logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('rag_pipeline.log')
+    ]
+)
+logger = logging.getLogger(__name__)
+logger.info("🚀 Starting RAG Pipeline with comprehensive logging enabled")
+
 
 # ### Setting OPENAI and GROQ API keys
 
@@ -107,17 +126,23 @@ hp_pdf_path = "Harry Potter - Book 1 - The Sorcerers Stone.pdf"
 
 
 # --- Split the PDF into chapters and preprocess the text ---
+logger.info(f"📖 Loading PDF from: {hp_pdf_path}")
 
 # 1. Split the PDF into chapters using the provided helper function.
 #    This function takes the path to the PDF and returns a list of Document objects, each representing a chapter.
+logger.info("🔪 Splitting PDF into chapters...")
 chapters = split_into_chapters(hp_pdf_path)
+logger.info(f"✅ Successfully split PDF into {len(chapters)} chapters")
 
 # 2. Clean up the text in each chapter by replacing unwanted characters (e.g., '\t') with spaces.
 #    This ensures the text is consistent and easier to process downstream.
+logger.info("🧹 Cleaning chapter text (replacing tabs with spaces)...")
 chapters = replace_t_with_space(chapters)
+logger.info("✅ Chapter text cleaning completed")
 
 # 3. Print the number of chapters extracted to verify the result.
 print(len(chapters))
+logger.info(f"📊 Total chapters ready for processing: {len(chapters)}")
 
 
 # ### Creating a list of quotes taken from the book
@@ -126,16 +151,24 @@ print(len(chapters))
 
 
 # --- Load and Preprocess the PDF, then Extract Quotes ---
+logger.info("📚 Loading PDF for quote extraction...")
 
 # 1. Load the PDF using PyPDFLoader
+logger.info("📄 Creating PyPDFLoader...")
 loader = PyPDFLoader(hp_pdf_path)
+logger.info("📖 Loading PDF document...")
 document = loader.load()
+logger.info(f"✅ PDF loaded successfully with {len(document)} pages")
 
 # 2. Clean the loaded document by replacing unwanted characters (e.g., '\t') with spaces
+logger.info("🧹 Cleaning document text for quote extraction...")
 document_cleaned = replace_t_with_space(document)
+logger.info("✅ Document cleaning completed")
 
 # 3. Extract a list of quotes from the cleaned document as Document objects
+logger.info("💬 Extracting quotes from document...")
 book_quotes_list = extract_book_quotes_as_documents(document_cleaned)
+logger.info(f"✅ Successfully extracted {len(book_quotes_list)} quotes from the book")
 
 
 # ### Defining Prompt Template for Summarization
@@ -173,18 +206,24 @@ def create_chapter_summary(chapter):
     Creates a summary of a chapter using a large language model (LLM).
     If the chapter is too large for the Groq API, it is split into smaller chunks and summarized in parts.
     """
+    logger.info(f"📝 Starting chapter summary creation for chapter: {chapter.metadata.get('chapter', 'Unknown')}")
+    
     chapter_txt = chapter.page_content
     model_name = "llama3-70b-8192"
+    logger.info(f"🤖 Initializing Groq LLM with model: {model_name}")
     llm = ChatGroq(temperature=0, model_name=model_name, groq_api_key=groq_api_key)
     groq_max_tokens = 8192  # Model context window
     groq_api_limit = 6000   # Your Groq tier's per-request limit
 
     # Count tokens in the chapter
+    logger.info("🔢 Counting tokens in chapter...")
     num_tokens = num_tokens_from_string(chapter_txt, "cl100k_base")
+    logger.info(f"📊 Chapter has {num_tokens} tokens (limit: {groq_api_limit})")
     verbose = False
 
     if num_tokens < groq_api_limit:
         # Summarize the whole chapter in one go
+        logger.info("📝 Chapter fits within token limit - summarizing in one go")
         chain = load_summarize_chain(
             llm,
             chain_type="stuff",
@@ -192,12 +231,16 @@ def create_chapter_summary(chapter):
             verbose=verbose
         )
         doc_chapter = Document(page_content=chapter_txt)
+        logger.info("🤖 Calling Groq API for chapter summary...")
         summary_result = chain.invoke([doc_chapter])
+        logger.info("✅ Received summary from Groq API")
         summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
         doc_summary = Document(page_content=summary_text, metadata=chapter.metadata)
+        logger.info(f"✅ Chapter summary completed ({len(summary_text)} characters)")
         return doc_summary
     else:
         # Split the chapter into smaller chunks
+        logger.info("📝 Chapter exceeds token limit - splitting into chunks")
         chunk_size = 3000  # tokens per chunk (well under the 6000 limit)
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
@@ -205,6 +248,7 @@ def create_chapter_summary(chapter):
             length_function=lambda x: num_tokens_from_string(x, "cl100k_base")
         )
         chunks = text_splitter.split_text(chapter_txt)
+        logger.info(f"🔪 Split chapter into {len(chunks)} chunks")
 
         # Summarize each chunk
         chunk_summaries = []
@@ -214,48 +258,450 @@ def create_chapter_summary(chapter):
             prompt=summarization_prompt,
             verbose=verbose
         )
-        for chunk in chunks:
+        for i, chunk in enumerate(chunks, 1):
+            logger.info(f"🤖 Summarizing chunk {i}/{len(chunks)}...")
             doc_chunk = Document(page_content=chunk)
             summary_result = chain.invoke([doc_chunk])
             summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
             chunk_summaries.append(summary_text)
+            logger.info(f"✅ Chunk {i} summary completed")
 
         # Combine all chunk summaries into a final summary
+        logger.info("🔗 Combining chunk summaries...")
         combined_summary_text = "\n".join(chunk_summaries)
         # Optionally, summarize the combined summary if it's still long
         combined_tokens = num_tokens_from_string(combined_summary_text, "cl100k_base")
+        logger.info(f"📊 Combined summary has {combined_tokens} tokens")
         if combined_tokens > groq_api_limit:
             # Summarize the combined summary
+            logger.info("🤖 Summarizing combined summary (still too long)...")
             doc_combined = Document(page_content=combined_summary_text)
             summary_result = chain.invoke([doc_combined])
             combined_summary_text = replace_double_lines_with_one_line(summary_result["output_text"])
+            logger.info("✅ Final summary of combined summaries completed")
 
         doc_summary = Document(page_content=combined_summary_text, metadata=chapter.metadata)
+        logger.info(f"✅ Chapter summary completed ({len(combined_summary_text)} characters)")
         return doc_summary
 
 
-# ### Generating Summaries for Each Chapter
+# ### Restartable and Persistent Chapter Processing System
 # 
 
 # In[ ]:
 
 
-# --- Generate Summaries for Each Chapter ---
+# --- Progress Tracking and Persistence Functions ---
 
-# Initialize an empty list to store the summaries of each chapter
-chapter_summaries = []
+def setup_progress_tracking():
+    """
+    Sets up the directory structure and initializes progress tracking.
+    
+    Returns:
+        tuple: (progress_file_path, summaries_dir_path)
+    """
+    # Create directories for storing progress and summaries
+    summaries_dir = Path("data/chapter_summaries")
+    summaries_dir.mkdir(exist_ok=True)
+    
+    progress_file = Path("data/progress_tracker.json")
+    
+    logger.info(f"📁 Created summaries directory: {summaries_dir}")
+    logger.info(f"📁 Progress tracker file: {progress_file}")
+    
+    return progress_file, summaries_dir
 
-# Iterate over each chapter in the chapters list
-for chapter in chapters:
-    # Generate a summary for the current chapter using the create_chapter_summary function
-    summary = create_chapter_summary(chapter)
-    # Append the summary to the chapter_summaries list
-    chapter_summaries.append(summary)
+
+def load_progress(progress_file_path):
+    """
+    Loads the current progress from the progress tracker file.
+    
+    Args:
+        progress_file_path (Path): Path to the progress tracker file.
+        
+    Returns:
+        dict: Progress tracking data with chapter statuses.
+    """
+    if progress_file_path.exists():
+        try:
+            with open(progress_file_path, 'r') as f:
+                progress = json.load(f)
+            logger.info(f"📂 Loaded existing progress: {len(progress.get('chapters', {}))} chapters tracked")
+            progress = validate_and_fix_progress(progress)
+            return progress
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            logger.warning(f"⚠️ Could not load progress file: {e}")
+    # Initialize new progress structure
+    progress = {
+        "started_at": datetime.now().isoformat(),
+        "total_chapters": 0,
+        "completed_chapters": 0,
+        "failed_chapters": 0,
+        "last_completed_chapter": 0,
+        "chapters": {}
+    }
+    logger.info("🆕 Initialized new progress tracker")
+    return progress
+
+def validate_and_fix_progress(progress):
+    """
+    Validates and fixes progress data to ensure consistency.
+    
+    Args:
+        progress (dict): Progress tracking data.
+        
+    Returns:
+        dict: Fixed progress data.
+    """
+    # Ensure all chapter keys are strings
+    fixed_chapters = {}
+    for key, value in progress["chapters"].items():
+        fixed_chapters[str(key)] = value
+    progress["chapters"] = fixed_chapters
+    # Recalculate completed and failed counts
+    completed_count = 0
+    failed_count = 0
+    last_completed = 0
+    for chapter_key, chapter_info in progress["chapters"].items():
+        if chapter_info["status"] == "completed":
+            completed_count += 1
+            last_completed = max(last_completed, int(chapter_key))
+        elif chapter_info["status"] == "failed":
+            failed_count += 1
+    progress["completed_chapters"] = completed_count
+    progress["failed_chapters"] = failed_count
+    progress["last_completed_chapter"] = last_completed
+    progress["total_chapters"] = len(progress["chapters"])
+    return progress
+
+
+def save_progress(progress_file_path, progress):
+    """
+    Saves the current progress to the progress tracker file.
+    
+    Args:
+        progress_file_path (Path): Path to the progress tracker file.
+        progress (dict): Progress tracking data to save.
+    """
+    try:
+        with open(progress_file_path, 'w') as f:
+            json.dump(progress, f, indent=2)
+        logger.debug(f"💾 Progress saved: {progress['completed_chapters']}/{progress['total_chapters']} chapters completed")
+    except Exception as e:
+        logger.error(f"❌ Failed to save progress: {e}")
+
+
+def save_chapter_summary(summaries_dir_path, chapter_num, summary_doc):
+    """
+    Saves a chapter summary to a JSON file.
+    
+    Args:
+        summaries_dir_path (Path): Directory to save summaries in.
+        chapter_num (int): Chapter number.
+        summary_doc (Document): LangChain Document containing the summary.
+        
+    Returns:
+        bool: True if saved successfully, False otherwise.
+    """
+    try:
+        summary_file = summaries_dir_path / f"chapter_{chapter_num}_summary.json"
+        summary_data = {
+            "chapter": chapter_num,
+            "content": summary_doc.page_content,
+            "metadata": summary_doc.metadata,
+            "created_at": datetime.now().isoformat(),
+            "content_length": len(summary_doc.page_content)
+        }
+        
+        with open(summary_file, 'w') as f:
+            json.dump(summary_data, f, indent=2)
+        
+        logger.info(f"💾 Saved chapter {chapter_num} summary ({len(summary_doc.page_content)} characters)")
+        return True
+    except Exception as e:
+        logger.error(f"❌ Failed to save chapter {chapter_num} summary: {e}")
+        return False
+
+
+def load_chapter_summary(summaries_dir_path, chapter_num):
+    """
+    Loads a chapter summary from a JSON file.
+    
+    Args:
+        summaries_dir_path (Path): Directory containing summaries.
+        chapter_num (int): Chapter number to load.
+        
+    Returns:
+        Document: LangChain Document containing the summary, or None if not found.
+    """
+    try:
+        summary_file = summaries_dir_path / f"chapter_{chapter_num}_summary.json"
+        if not summary_file.exists():
+            return None
+            
+        with open(summary_file, 'r') as f:
+            summary_data = json.load(f)
+        
+        summary_doc = Document(
+            page_content=summary_data["content"],
+            metadata=summary_data["metadata"]
+        )
+        
+        logger.info(f"📂 Loaded chapter {chapter_num} summary ({len(summary_data['content'])} characters)")
+        return summary_doc
+    except Exception as e:
+        logger.error(f"❌ Failed to load chapter {chapter_num} summary: {e}")
+        return None
+
+
+def update_chapter_progress(progress, chapter_num, status, error_message=None):
+    """
+    Updates the progress tracking for a specific chapter.
+    
+    Args:
+        progress (dict): Progress tracking data.
+        chapter_num (int): Chapter number.
+        status (str): Status of the chapter ('pending', 'completed', 'failed').
+        error_message (str, optional): Error message if status is 'failed'.
+    """
+    # Convert chapter_num to string for dictionary key
+    chapter_key = str(chapter_num)
+    if chapter_key not in progress["chapters"]:
+        progress["chapters"][chapter_key] = {
+            "status": "pending",
+            "started_at": None,
+            "completed_at": None,
+            "error_message": None
+        }
+    
+    chapter_info = progress["chapters"][chapter_key]
+    
+    # Only update if the new status is different or if we are starting a new chapter
+    if status == "started" and chapter_info["status"] != "completed":
+        chapter_info["status"] = "in_progress"
+        chapter_info["started_at"] = datetime.now().isoformat()
+    elif status == "completed" and chapter_info["status"] != "completed":
+        chapter_info["status"] = "completed"
+        chapter_info["completed_at"] = datetime.now().isoformat()
+        progress["completed_chapters"] += 1
+        progress["last_completed_chapter"] = max(progress["last_completed_chapter"], chapter_num)
+    elif status == "failed" and chapter_info["status"] != "completed":
+        chapter_info["status"] = "failed"
+        chapter_info["completed_at"] = datetime.now().isoformat()
+        chapter_info["error_message"] = error_message
+        progress["failed_chapters"] += 1
+    
+    progress["total_chapters"] = len(progress["chapters"])
+
+
+def get_next_pending_chapter(progress, total_chapters):
+    """
+    Gets the next chapter that needs to be processed.
+    
+    Args:
+        progress (dict): Progress tracking data.
+        total_chapters (int): Total number of chapters.
+        
+    Returns:
+        int: Next chapter number to process, or None if all chapters are complete.
+    """
+    # Check for chapters that haven't been started or failed
+    for chapter_num in range(1, total_chapters + 1):
+        chapter_info = progress["chapters"].get(str(chapter_num), {"status": "pending"})
+        if chapter_info["status"] in ["pending", "failed"]:
+            return chapter_num
+    
+    return None
+
+
+def print_progress_summary(progress):
+    """
+    Prints a summary of the current progress.
+    
+    Args:
+        progress (dict): Progress tracking data.
+    """
+    total = progress["total_chapters"]
+    completed = progress["completed_chapters"]
+    failed = progress["failed_chapters"]
+    pending = total - completed - failed
+    
+    print(f"\n📊 PROGRESS SUMMARY:")
+    print(f"   Total chapters: {total}")
+    print(f"   ✅ Completed: {completed}")
+    print(f"   ❌ Failed: {failed}")
+    print(f"   ⏳ Pending: {pending}")
+    
+    if completed > 0:
+        percentage = (completed / total) * 100
+        print(f"   📈 Progress: {percentage:.1f}%")
+    
+    if progress["last_completed_chapter"] > 0:
+        print(f"   🎯 Last completed: Chapter {progress['last_completed_chapter']}")
+
+
+def signal_handler(signum, frame):
+    """
+    Handles interruption signals (Ctrl+C) to save progress before exiting.
+    """
+    print(f"\n⚠️ Received interrupt signal. Saving progress...")
+    # Access global variables if they exist
+    global_vars = globals()
+    if 'current_progress' in global_vars and 'progress_file_path' in global_vars:
+        save_progress(global_vars['progress_file_path'], global_vars['current_progress'])
+        print("💾 Progress saved. You can resume later.")
+    sys.exit(0)
+
+
+def resume_chapter_processing(chapters, progress_file_path, summaries_dir_path):
+    """
+    Main function to process chapters with restartable and persistent functionality.
+    
+    Args:
+        chapters (list): List of chapter Document objects.
+        progress_file_path (Path): Path to progress tracker file.
+        summaries_dir_path (Path): Path to summaries directory.
+        
+    Returns:
+        list: List of completed chapter summary Document objects.
+    """
+    global current_progress
+    
+    # Set up signal handling for graceful interruption
+    signal.signal(signal.SIGINT, signal_handler)
+    
+    # Load or initialize progress
+    current_progress = load_progress(progress_file_path)
+    
+    # Initialize progress if this is the first run
+    if current_progress["total_chapters"] == 0:
+        current_progress["total_chapters"] = len(chapters)
+        for i in range(1, len(chapters) + 1):
+            current_progress["chapters"][str(i)] = {"status": "pending"}
+        save_progress(progress_file_path, current_progress)
+    
+    # Check if we're resuming or starting fresh
+    if current_progress["completed_chapters"] > 0:
+        logger.info(f"🔄 Resuming from previous run: {current_progress['completed_chapters']}/{current_progress['total_chapters']} chapters completed")
+        print(f"🔄 Resuming from Chapter {current_progress['last_completed_chapter'] + 1}")
+    else:
+        logger.info("🚀 Starting fresh chapter processing")
+        print("🚀 Starting chapter processing")
+    
+    print_progress_summary(current_progress)
+    
+    # Load any existing summaries
+    chapter_summaries = []
+    for chapter_num in range(1, len(chapters) + 1):
+        summary_doc = load_chapter_summary(summaries_dir_path, chapter_num)
+        if summary_doc:
+            chapter_summaries.append(summary_doc)
+    
+    logger.info(f"📂 Loaded {len(chapter_summaries)} existing summaries")
+    
+    # Process remaining chapters
+    while True:
+        next_chapter = get_next_pending_chapter(current_progress, len(chapters))
+        if next_chapter is None:
+            logger.info("🎉 All chapters have been processed!")
+            break
+        
+        chapter = chapters[next_chapter - 1]  # Convert to 0-based index
+        chapter_num = next_chapter
+        
+        logger.info(f"📖 Processing chapter {chapter_num}/{len(chapters)}: {chapter.metadata.get('chapter', 'Unknown')}")
+        print(f"\n📖 Processing Chapter {chapter_num}/{len(chapters)}...")
+        
+        # Update progress to mark chapter as started
+        update_chapter_progress(current_progress, chapter_num, "started")
+        save_progress(progress_file_path, current_progress)
+        
+        try:
+            # Generate summary
+            summary = create_chapter_summary(chapter)
+            
+            # Save summary to file
+            if save_chapter_summary(summaries_dir_path, chapter_num, summary):
+                # Update progress to mark chapter as completed
+                update_chapter_progress(current_progress, chapter_num, "completed")
+                chapter_summaries.append(summary)
+                
+                # Save progress after each successful completion
+                save_progress(progress_file_path, current_progress)
+                
+                print(f"✅ Chapter {chapter_num} completed successfully")
+                print_progress_summary(current_progress)
+            else:
+                # Mark as failed if saving failed
+                update_chapter_progress(current_progress, chapter_num, "failed", "Failed to save summary")
+                save_progress(progress_file_path, current_progress)
+                
+        except Exception as e:
+            error_msg = str(e)
+            logger.error(f"❌ Failed to process chapter {chapter_num}: {error_msg}")
+            print(f"❌ Chapter {chapter_num} failed: {error_msg}")
+            
+            # Update progress to mark chapter as failed
+            update_chapter_progress(current_progress, chapter_num, "failed", error_msg)
+            save_progress(progress_file_path, current_progress)
+    
+    # Final progress summary
+    print(f"\n🎉 Chapter processing complete!")
+    print_progress_summary(current_progress)
+    
+    return chapter_summaries
+
+
+# ### Generating Summaries for Each Chapter (Restartable Version)
+# 
+
+# In[ ]:
+
+
+# --- Generate Summaries for Each Chapter with Restartable Processing ---
+logger.info("🚀 Starting restartable chapter summary generation...")
+
+# Set up progress tracking
+progress_file_path, summaries_dir_path = setup_progress_tracking()
+
+# Process chapters with restartable functionality
+chapter_summaries = resume_chapter_processing(chapters, progress_file_path, summaries_dir_path)
+
+logger.info(f"🎉 Chapter summary generation completed! Total summaries: {len(chapter_summaries)}")
 
 
 # # Encoding the data
 
-# ### Function to Encode a Book into a Vector Store using OpenAI Embeddings
+# ### Function to Create Local Embeddings
+# 
+
+# In[ ]:
+
+
+def create_local_embeddings():
+    """
+    Creates a local embedding model using Sentence Transformers.
+    
+    Returns:
+        HuggingFaceEmbeddings: A local embedding model.
+    """
+    logger.info("🤖 Creating local embedding model...")
+    try:
+        # Use a lightweight but effective embedding model
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2",
+            model_kwargs={'device': 'cpu'},  # Use CPU to avoid GPU memory issues
+            encode_kwargs={'normalize_embeddings': True}
+        )
+        logger.info("✅ Local embedding model created successfully")
+        return embeddings
+    except Exception as e:
+        logger.error(f"❌ Failed to create local embedding model: {e}")
+        logger.info("🔄 Falling back to OpenAI embeddings...")
+        return OpenAIEmbeddings()
+
+
+# ### Function to Encode a Book into a Vector Store using Local Embeddings
 # 
 
 # In[ ]:
@@ -263,7 +709,7 @@ for chapter in chapters:
 
 def encode_book(path, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a PDF book into a FAISS vector store using OpenAI embeddings.
+    Encodes a PDF book into a FAISS vector store using local embeddings.
 
     Args:
         path (str): The path to the PDF file.
@@ -273,25 +719,34 @@ def encode_book(path, chunk_size=1000, chunk_overlap=200):
     Returns:
         FAISS: A FAISS vector store containing the encoded book content.
     """
+    logger.info(f"📖 Loading PDF from {path} for encoding...")
 
     # 1. Load the PDF document using PyPDFLoader
     loader = PyPDFLoader(path)
     documents = loader.load()
+    logger.info(f"✅ PDF loaded with {len(documents)} pages")
 
     # 2. Split the document into chunks for embedding
+    logger.info(f"🔪 Splitting document into chunks (size: {chunk_size}, overlap: {chunk_overlap})...")
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
         length_function=len
     )
     texts = text_splitter.split_documents(documents)
+    logger.info(f"✅ Document split into {len(texts)} chunks")
 
     # 3. Clean up the text chunks (replace unwanted characters)
+    logger.info("🧹 Cleaning text chunks...")
     cleaned_texts = replace_t_with_space(texts)
+    logger.info("✅ Text chunks cleaned")
 
-    # 4. Create OpenAI embeddings and encode the cleaned text chunks into a FAISS vector store
-    embeddings = OpenAIEmbeddings()
+    # 4. Create local embeddings and encode the cleaned text chunks into a FAISS vector store
+    logger.info("🤖 Creating local embeddings...")
+    embeddings = create_local_embeddings()
+    logger.info("🔢 Encoding chunks into FAISS vector store...")
     vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
+    logger.info("✅ FAISS vector store created successfully")
 
     # 5. Return the vector store
     return vectorstore
@@ -305,7 +760,7 @@ def encode_book(path, chunk_size=1000, chunk_overlap=200):
 
 def encode_chapter_summaries(chapter_summaries):
     """
-    Encodes a list of chapter summaries into a FAISS vector store using OpenAI embeddings.
+    Encodes a list of chapter summaries into a FAISS vector store using local embeddings.
 
     Args:
         chapter_summaries (list): A list of Document objects representing the chapter summaries.
@@ -313,11 +768,16 @@ def encode_chapter_summaries(chapter_summaries):
     Returns:
         FAISS: A FAISS vector store containing the encoded chapter summaries.
     """
-    # Create OpenAI embeddings instance
-    embeddings = OpenAIEmbeddings()
+    logger.info(f"📝 Encoding {len(chapter_summaries)} chapter summaries...")
+    
+    # Create local embeddings instance
+    logger.info("🤖 Creating local embeddings for chapter summaries...")
+    embeddings = create_local_embeddings()
 
     # Encode the chapter summaries into a FAISS vector store
+    logger.info("🔢 Encoding chapter summaries into FAISS vector store...")
     chapter_summaries_vectorstore = FAISS.from_documents(chapter_summaries, embeddings)
+    logger.info("✅ Chapter summaries vector store created successfully")
 
     # Return the vector store
     return chapter_summaries_vectorstore
@@ -330,7 +790,7 @@ def encode_chapter_summaries(chapter_summaries):
 
 def encode_quotes(book_quotes_list):
     """
-    Encodes a list of book quotes into a FAISS vector store using OpenAI embeddings.
+    Encodes a list of book quotes into a FAISS vector store using local embeddings.
 
     Args:
         book_quotes_list (list): A list of Document objects, each representing a quote from the book.
@@ -338,11 +798,16 @@ def encode_quotes(book_quotes_list):
     Returns:
         FAISS: A FAISS vector store containing the encoded book quotes.
     """
-    # Create OpenAI embeddings instance
-    embeddings = OpenAIEmbeddings()
+    logger.info(f"💬 Encoding {len(book_quotes_list)} book quotes...")
+    
+    # Create local embeddings instance
+    logger.info("🤖 Creating local embeddings for book quotes...")
+    embeddings = create_local_embeddings()
 
     # Encode the book quotes into a FAISS vector store
+    logger.info("🔢 Encoding book quotes into FAISS vector store...")
     quotes_vectorstore = FAISS.from_documents(book_quotes_list, embeddings)
+    logger.info("✅ Book quotes vector store created successfully")
 
     # Return the vector store
     return quotes_vectorstore
@@ -357,40 +822,55 @@ def encode_quotes(book_quotes_list):
 
 
 # --- Create or Load Vector Stores for Book Chunks, Chapter Summaries, and Book Quotes ---
+logger.info("🔍 Checking for existing vector stores...")
 
 # Check if the vector stores already exist on disk
 if (
-    os.path.exists("chunks_vector_store") and
-    os.path.exists("chapter_summaries_vector_store") and
-    os.path.exists("book_quotes_vectorstore")
+            os.path.exists("data/chunks_vector_store") and
+        os.path.exists("data/chapter_summaries_vector_store") and
+        os.path.exists("data/book_quotes_vectorstore")
 ):
-    # If vector stores exist, load them using OpenAI embeddings
-    embeddings = OpenAIEmbeddings()
+    # If vector stores exist, load them using local embeddings
+    logger.info("📂 Loading existing vector stores from disk...")
+    embeddings = create_local_embeddings()
+    logger.info("📖 Loading chunks vector store...")
     chunks_vector_store = FAISS.load_local(
-        "chunks_vector_store", embeddings, allow_dangerous_deserialization=True
+        "data/chunks_vector_store", embeddings, allow_dangerous_deserialization=True
     )
+    logger.info("📖 Loading chapter summaries vector store...")
     chapter_summaries_vector_store = FAISS.load_local(
-        "chapter_summaries_vector_store", embeddings, allow_dangerous_deserialization=True
+        "data/chapter_summaries_vector_store", embeddings, allow_dangerous_deserialization=True
     )
+    logger.info("📖 Loading book quotes vector store...")
     book_quotes_vectorstore = FAISS.load_local(
-        "book_quotes_vectorstore", embeddings, allow_dangerous_deserialization=True
+        "data/book_quotes_vectorstore", embeddings, allow_dangerous_deserialization=True
     )
+    logger.info("✅ All vector stores loaded successfully")
 else:
     # If vector stores do not exist, encode and save them
+    logger.info("🔨 Vector stores not found - creating new ones...")
 
     # 1. Encode the book into a vector store of chunks
+    logger.info("📚 Encoding book into chunks vector store...")
     chunks_vector_store = encode_book(hp_pdf_path, chunk_size=1000, chunk_overlap=200)
+    logger.info("✅ Book chunks vector store created")
 
     # 2. Encode the chapter summaries into a vector store
+    logger.info("📝 Encoding chapter summaries into vector store...")
     chapter_summaries_vector_store = encode_chapter_summaries(chapter_summaries)
+    logger.info("✅ Chapter summaries vector store created")
 
     # 3. Encode the book quotes into a vector store
+    logger.info("💬 Encoding book quotes into vector store...")
     book_quotes_vectorstore = encode_quotes(book_quotes_list)
+    logger.info("✅ Book quotes vector store created")
 
     # 4. Save the vector stores to disk for future use
-    chunks_vector_store.save_local("chunks_vector_store")
-    chapter_summaries_vector_store.save_local("chapter_summaries_vector_store")
-    book_quotes_vectorstore.save_local("book_quotes_vectorstore")
+    logger.info("💾 Saving vector stores to disk...")
+    chunks_vector_store.save_local("data/chunks_vector_store")
+    chapter_summaries_vector_store.save_local("data/chapter_summaries_vector_store")
+    book_quotes_vectorstore.save_local("data/book_quotes_vectorstore")
+    logger.info("✅ All vector stores saved to disk")
 
 
 # ### Create retrievers from the vector stores
@@ -399,18 +879,24 @@ else:
 
 
 # --- Create Query Retrievers from Vector Stores ---
+logger.info("🔍 Creating retrievers from vector stores...")
 
 # The following retrievers are used to fetch relevant documents from the vector stores
 # based on a query. The number of results returned can be controlled via the 'k' parameter.
 
 # Retriever for book chunks (returns the top 1 most relevant chunk)
+logger.info("📚 Creating chunks retriever (k=1)...")
 chunks_query_retriever = chunks_vector_store.as_retriever(search_kwargs={"k": 1})
 
 # Retriever for chapter summaries (returns the top 1 most relevant summary)
+logger.info("📝 Creating chapter summaries retriever (k=1)...")
 chapter_summaries_query_retriever = chapter_summaries_vector_store.as_retriever(search_kwargs={"k": 1})
 
 # Retriever for book quotes (returns the top 10 most relevant quotes)
+logger.info("💬 Creating book quotes retriever (k=10)...")
 book_quotes_query_retriever = book_quotes_vectorstore.as_retriever(search_kwargs={"k": 10})
+
+logger.info("✅ All retrievers created successfully")
 
 
 # # For advanced RAGing
@@ -2805,4 +3291,133 @@ print(results_df)
 # Call the function to analyze the metric results from the Ragas evaluation
 # 'results_df' is the DataFrame containing the evaluation metrics for each question
 analyse_metric_results(results_df)  # Analyse the results
+
+
+# -----------------------------------------------------------
+# Interactive Question-Answering Interface
+# -----------------------------------------------------------
+
+def interactive_qa():
+    """
+    Interactive question-answering interface for the Harry Potter RAG pipeline.
+    Allows users to ask questions and get answers using the plan-and-execute workflow.
+    """
+    print("=" * 80)
+    print("🎭 HARRY POTTER RAG QUESTION-ANSWERING SYSTEM")
+    print("=" * 80)
+    print("Ask me anything about Harry Potter and the Sorcerer's Stone!")
+    print("Type 'quit', 'exit', or 'q' to end the session.")
+    print("Type 'help' for example questions.")
+    print("-" * 80)
+    
+    example_questions = [
+        "What is the name of the three-headed dog guarding the Sorcerer's Stone?",
+        "Who gave Harry Potter his first broomstick?",
+        "Which house did the Sorting Hat initially consider for Harry?",
+        "What is Harry's owl's name?",
+        "How did Harry and his friends get past Fluffy?",
+        "What is the Mirror of Erised?",
+        "Who tried to steal the Sorcerer's Stone?",
+        "How did Harry defeat Quirrell?",
+        "What did Professor Lupin teach?",
+        "What is the class that the professor who helped the villain is teaching?"
+    ]
+    
+    while True:
+        try:
+            # Get user input
+            question = input("\n🤔 Your question: ").strip()
+            
+            # Check for exit commands
+            if question.lower() in ['quit', 'exit', 'q']:
+                print("\n👋 Thanks for using the Harry Potter RAG system! Goodbye!")
+                break
+            
+            # Check for help command
+            if question.lower() == 'help':
+                print("\n📚 Example questions you can ask:")
+                for i, example in enumerate(example_questions, 1):
+                    print(f"  {i}. {example}")
+                print("\n💡 You can ask about characters, events, locations, objects, and more!")
+                continue
+            
+            # Skip empty questions
+            if not question:
+                print("❌ Please enter a question.")
+                continue
+            
+            print(f"\n🔍 Processing your question: '{question}'")
+            print("⏳ This may take a moment...")
+            
+            # Prepare input for the plan-and-execute pipeline
+            input_data = {"question": question}
+            
+            # Execute the plan-and-execute workflow
+            final_answer, final_state = execute_plan_and_print_steps(input_data)
+            
+            # Display the answer
+            print("\n" + "=" * 60)
+            print("🎯 ANSWER:")
+            print("=" * 60)
+            print(final_answer)
+            print("=" * 60)
+            
+            # Optionally show the reasoning process
+            show_reasoning = input("\n🤔 Would you like to see the reasoning process? (y/n): ").strip().lower()
+            if show_reasoning in ['y', 'yes']:
+                print("\n🧠 REASONING PROCESS:")
+                print("-" * 40)
+                if 'past_steps' in final_state and final_state['past_steps']:
+                    for i, step in enumerate(final_state['past_steps'], 1):
+                        print(f"Step {i}: {step}")
+                else:
+                    print("No detailed reasoning steps available.")
+                print("-" * 40)
+            
+        except KeyboardInterrupt:
+            print("\n\n👋 Session interrupted. Goodbye!")
+            break
+        except Exception as e:
+            print(f"\n❌ Error processing your question: {str(e)}")
+            print("Please try asking your question in a different way.")
+
+if __name__ == "__main__":
+    # Check if we should run the interactive interface
+    import sys
+    
+    if len(sys.argv) > 1 and sys.argv[1] == "--interactive":
+        # Run interactive mode
+        interactive_qa()
+    else:
+        # Run the original pipeline (evaluation mode)
+        print("Running RAG pipeline in evaluation mode...")
+        print("To run in interactive mode, use: uv run python RAG_pipeline.py --interactive")
+        
+        # Run the evaluation examples
+        print("\n" + "=" * 60)
+        print("Running evaluation examples...")
+        print("=" * 60)
+        
+        # Example 1: Simple question
+        input1 = {"question": "what did professor lupin teach?"}
+        print(f"\nQuestion: {input1['question']}")
+        final_answer1, final_state1 = execute_plan_and_print_steps(input1)
+        print(f"Answer: {final_answer1}")
+        
+        # Example 2: Complex question
+        input2 = {"question": "what is the class that the professor who helped the villain is teaching?"}
+        print(f"\nQuestion: {input2['question']}")
+        final_answer2, final_state2 = execute_plan_and_print_steps(input2)
+        print(f"Answer: {final_answer2}")
+        
+        # Example 3: Reasoning question
+        input3 = {"question": "how did harry beat quirrell?"}
+        print(f"\nQuestion: {input3['question']}")
+        final_answer3, final_state3 = execute_plan_and_print_steps(input3)
+        print(f"Answer: {final_answer3}")
+        
+        print("\n" + "=" * 60)
+        print("Evaluation complete!")
+        print("To ask your own questions, run: uv run python RAG_pipeline.py --interactive")
+        print("=" * 60)
 
